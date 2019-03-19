@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CrashX</string>
+
+    <!-- Main activity strings -->
+    <string name="hello">Hello! Press one of the following buttons to crash the app:</string>
+    <string name="crash_main_thread">Crash main thread</string>
+    <string name="crash_background_thread">Crash background thread</string>
+    <string name="crash_with_delay">Crash with delay (5s)</string>
+
+    <!-- These strings are only for our CUSTOM error activity, if you are using the default activity, they are not needed! -->
+    <string name="error_title">Something went wrong!</string>
+    <string name="error_occurred">An error occurred. We\'re deeply sorry.</string>
+    <string name="error_details">Error details:</string>
+    <string name="unknown_exception">Unknown exception</string>
+    <string name="restart_app">Restart app</string>
+    <string name="close_app">Close app</string>
+
+    <!-- We define some custom strings for the default error activity -->
+    <!-- This only applies when using the default error activity, of course! -->
+    <!-- To see them, uncomment them and disable the custom error activity in CrashingApplication -->
+    <!--<string name="crash_error_activity_error_occurred_explanation">An error occurred in this sample app. This is the default error activity with customized strings.</string>-->
+    <!--<string name="crash_error_activity_unknown_exception">No stacktrace available!</string>-->
+    <!--<string name="crash_error_activity_restart_app">Restart now</string>-->
+    <!--<string name="crash_error_activity_close_app">Close now</string>-->
+    <!--<string name="crash_error_activity_error_details">Error information</string>-->
+    <!--<string name="crash_error_activity_error_details_title">Error information</string>-->
+    <!--<string name="crash_error_activity_error_details_close">OK</string>-->
+
+</resources>

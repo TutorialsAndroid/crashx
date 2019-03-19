@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kinda.crash">
+
+    <application>
+        <activity
+            android:name="com.kinda.crash.activity.DefaultErrorActivity"
+            android:process=":error_activity" />
+        <provider
+            android:name="com.kinda.crash.provider.CrashInitProvider"
+            android:authorities="${applicationId}.crashinitprovider"
+            android:exported="false"
+            android:initOrder="101" />
+    </application>
+
+</manifest>
