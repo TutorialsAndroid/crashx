@@ -14,6 +14,11 @@ This library allows launching a crash activity when the app crashes, instead of 
 
 ![](https://github.com/TutorialsAndroid/CrashX/blob/master/images/device-2019-03-19-154405.png)
 
+## Important
+
+**Note this library was made in the making for `Kinda` app this library was copied from `customcrashactivity` repository on github we made this library because we want to use own library on `Kinda` app.So this library is in development we will monthly
+update this library with some changes.**
+
 ## How to use
 
 ### One-step install
