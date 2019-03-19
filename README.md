@@ -8,7 +8,7 @@ This library allows launching a crash activity when the app crashes, instead of 
 
 **Library Availbale at JitPack.io**
 
-[![](https://jitpack.io/v/TutorialsAndroid/CrashX.svg)](https://jitpack.io/#TutorialsAndroid/CrashX)
+[![](https://jitpack.io/v/TutorialsAndroid/crashx.svg)](https://jitpack.io/#TutorialsAndroid/crashx)
 
 **Sample Screen**
 
@@ -30,7 +30,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.TutorialsAndroid:CrashX:v0.1'
+	        implementation 'com.github.TutorialsAndroid:crashx:v0.1'
 	}
 
 ...and you are done!
