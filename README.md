@@ -8,7 +8,7 @@ This library allows launching a crash activity when the app crashes, instead of 
 
 **Sample Screen**
 
-![](https://github.com/TutorialsAndroid/CrashX/blob/master/images/device-2019-03-19-154405.png)
+![](https://github.com/TutorialsAndroid/crashx/blob/master/images/device-2019-03-19-154405.jpg)
 
 ## Important
 
