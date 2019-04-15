@@ -1,18 +1,19 @@
-# CrashX
+# CrashX  [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)  [![Known Vulnerabilities](https://snyk.io/test/github/TutorialsAndroid/CrashX/badge.svg?targetFile=library%2Fbuild.gradle)](https://snyk.io/test/github/TutorialsAndroid/CrashX?targetFile=library%2Fbuild.gradle) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CrashX-red.svg?style=flat-square)](https://android-arsenal.com/details/1/7581)
 
 This library allows launching a crash activity when the app crashes, instead of showing the hated "Unfortunately, X has stopped" dialog.
 
-[![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
-
-[![Known Vulnerabilities](https://snyk.io/test/github/TutorialsAndroid/CrashX/badge.svg?targetFile=library%2Fbuild.gradle)](https://snyk.io/test/github/TutorialsAndroid/CrashX?targetFile=library%2Fbuild.gradle)
-
 **Library Availbale at JitPack.io**
 
-[![](https://jitpack.io/v/TutorialsAndroid/CrashX.svg)](https://jitpack.io/#TutorialsAndroid/CrashX)
+[![](https://jitpack.io/v/TutorialsAndroid/crashx.svg)](https://jitpack.io/#TutorialsAndroid/crashx)
 
 **Sample Screen**
 
 ![](https://github.com/TutorialsAndroid/CrashX/blob/master/images/device-2019-03-19-154405.png)
+
+## Important
+
+**Note this library was made in the making for `Kinda` app this library was copied from `customcrashactivity` repository on github we made this library because we want to use own library on `Kinda` app.So this library is in development we will monthly
+update this library with some changes.**
 
 ## How to use
 
@@ -30,7 +31,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.TutorialsAndroid:CrashX:v0.1'
+	        implementation 'com.github.TutorialsAndroid:crashx:v0.1'
 	}
 
 ...and you are done!
