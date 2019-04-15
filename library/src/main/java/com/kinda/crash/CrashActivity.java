@@ -55,7 +55,6 @@ public final class CrashActivity {
     private static final String SHARED_PREFERENCES_FIELD_TIMESTAMP = "last_crash_timestamp";
 
     //Internal variables
-    @SuppressLint("StaticFieldLeak") //This is an application-wide component
     private static Application application;
     private static CrashConfig config = new CrashConfig();
     private static final Deque<String> activityLog = new ArrayDeque<>(MAX_ACTIVITIES_IN_LOG);
