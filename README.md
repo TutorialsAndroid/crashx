@@ -2,6 +2,8 @@
 
 This library allows launching a crash activity when the app crashes, instead of showing the hated "Unfortunately, X has stopped" dialog.
 
+![](https://github.com/TutorialsAndroid/crashx/blob/master/images/WPLink.jpg)
+
 **Library Availbale at JitPack.io**
 
 [![](https://jitpack.io/v/TutorialsAndroid/crashx.svg)](https://jitpack.io/#TutorialsAndroid/crashx)
