@@ -1,4 +1,4 @@
-# CrashX  [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)  [![Known Vulnerabilities](https://snyk.io/test/github/TutorialsAndroid/CrashX/badge.svg?targetFile=library%2Fbuild.gradle)](https://snyk.io/test/github/TutorialsAndroid/CrashX?targetFile=library%2Fbuild.gradle) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CrashX-red.svg?style=flat-square)](https://android-arsenal.com/details/1/7581)
+# CrashX  [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)  [![Known Vulnerabilities](https://snyk.io/test/github/TutorialsAndroid/CrashX/badge.svg?targetFile=library%2Fbuild.gradle)](https://snyk.io/test/github/TutorialsAndroid/CrashX?targetFile=library%2Fbuild.gradle) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CrashX-red.svg?style=flat-square)](https://android-arsenal.com/details/1/7581) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/TutorialsAndroid/crashx)
 
 This library allows launching a crash activity when the app crashes, instead of showing the hated "Unfortunately, X has stopped" dialog.
 
@@ -8,12 +8,7 @@ This library allows launching a crash activity when the app crashes, instead of 
 
 **Sample Screen**
 
-![](https://github.com/TutorialsAndroid/CrashX/blob/master/images/device-2019-03-19-154405.png)
-
-## Important
-
-**Note this library was made in the making for `Kinda` app this library was copied from `customcrashactivity` repository on github we made this library because we want to use own library on `Kinda` app.So this library is in development we will monthly
-update this library with some changes.**
+![](https://github.com/TutorialsAndroid/crashx/blob/master/images/device-2019-03-19-154405.jpg)
 
 ## How to use
 
@@ -31,7 +26,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.TutorialsAndroid:crashx:v0.1'
+	        implementation 'com.github.TutorialsAndroid:crashx:v15.4.19'
 	}
 
 ...and you are done!
