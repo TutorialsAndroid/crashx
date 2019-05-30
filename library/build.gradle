@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 2
-        versionName "15.4.19"
+        versionCode 3
+        versionName "30.5.19"
     }
 	buildTypes {
         release {
@@ -23,6 +23,12 @@ android {
 
 dependencies {
 	implementation fileTree(include: ['*.jar'], dir: 'libs')
-	
+
+    //ANDROID SUPPORT LIBRARIES
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation "com.android.support:preference-v7:28.0.0"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }

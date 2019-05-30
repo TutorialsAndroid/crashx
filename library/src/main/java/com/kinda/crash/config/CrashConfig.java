@@ -285,7 +285,6 @@ public class CrashConfig implements Serializable {
          * If not set or set to null, no events will be reported.
          *
          * @param eventListener The event listener.
-         * @throws IllegalArgumentException if the eventListener is an inner or anonymous class
          */
         @NonNull
         public Builder eventListener(@Nullable CrashActivity.EventListener eventListener) {
