@@ -8,7 +8,7 @@ This library allows launching a crash activity when the app crashes, instead of 
 
 **Sample Screen**
 
-![](https://github.com/TutorialsAndroid/crashx/blob/master/images/device-2019-03-19-154405.jpg)
+![](https://github.com/TutorialsAndroid/crashx/blob/master/images/device-2019-03-19-154405.png)
 
 ## How to use
 
@@ -26,7 +26,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.TutorialsAndroid:crashx:v15.4.19'
+	        implementation 'com.github.TutorialsAndroid:crashx:v30.5.19'
 	}
 
 ...and you are done!
