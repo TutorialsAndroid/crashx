@@ -1,4 +1,4 @@
-package com.kinda.crash.config;
+package com.developer.kinda.config;
 
 import android.app.Activity;
 import androidx.annotation.DrawableRes;
@@ -11,7 +11,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Modifier;
 
-import com.kinda.crash.CrashActivity;
+import com.developer.kinda.CrashActivity;
 
 public class CrashConfig implements Serializable {
 

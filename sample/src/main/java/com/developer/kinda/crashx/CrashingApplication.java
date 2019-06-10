@@ -1,10 +1,10 @@
-package com.kinda.crash.sample;
+package com.developer.kinda.crashx;
 
 import android.app.Application;
 import android.util.Log;
 
-import com.kinda.crash.CrashActivity;
-import com.kinda.crash.config.CrashConfig;
+import com.developer.kinda.CrashActivity;
+import com.developer.kinda.config.CrashConfig;
 
 public class CrashingApplication extends Application {
 
@@ -45,12 +45,12 @@ public class CrashingApplication extends Application {
 //                .errorDrawable(R.mipmap.ic_launcher)
                 //This sets the restart activity.
                 //If you set this, this will be used. However, you can also set it with an intent-filter:
-                //  <action android:name="com.kinda.crash.RESTART" />
+                //  <action android:name="com.developer.kinda.RESTART" />
                 //If none are set, the default launch activity will be used.
 //                .restartActivity(MainActivity.class)
                 //This sets a custom error activity class instead of the default one.
                 //If you set this, this will be used. However, you can also set it with an intent-filter:
-                //  <action android:name="com.kinda.crash.ERROR" />
+                //  <action android:name="com.developer.kinda.ERROR" />
                 //If none are set, the default launch activity will be used.
                 //Comment it (and disable the intent filter) to see the customization effects on the default error activity.
                 //Uncomment to use the custom error activity

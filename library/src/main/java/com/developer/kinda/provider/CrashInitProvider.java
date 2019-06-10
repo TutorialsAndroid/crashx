@@ -1,4 +1,4 @@
-package com.kinda.crash.provider;
+package com.developer.kinda.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -7,7 +7,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.kinda.crash.CrashActivity;
+import com.developer.kinda.CrashActivity;
 
 public class CrashInitProvider extends ContentProvider {
 

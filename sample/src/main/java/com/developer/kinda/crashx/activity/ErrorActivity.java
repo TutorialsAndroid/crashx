@@ -1,4 +1,4 @@
-package com.kinda.crash.sample.activity;
+package com.developer.kinda.crashx.activity;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.kinda.crash.CrashActivity;
-import com.kinda.crash.config.CrashConfig;
-import com.kinda.crash.sample.R;
+import com.developer.kinda.CrashActivity;
+import com.developer.kinda.config.CrashConfig;
+import com.developer.kinda.crashx.R;
 
 public class ErrorActivity extends AppCompatActivity {
 

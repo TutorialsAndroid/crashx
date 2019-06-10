@@ -1,4 +1,4 @@
-package com.kinda.crash.activity;
+package com.developer.kinda.activity;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
@@ -20,9 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kinda.crash.CrashActivity;
-import com.kinda.crash.R;
-import com.kinda.crash.config.CrashConfig;
+import com.developer.kinda.CrashActivity;
+import com.developer.kinda.R;
+import com.developer.kinda.config.CrashConfig;
 
 public final class DefaultErrorActivity extends AppCompatActivity {
 

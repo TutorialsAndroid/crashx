@@ -1,4 +1,4 @@
-package com.kinda.crash;
+package com.developer.kinda;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import android.util.Log;
-
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.StringWriter;
@@ -27,25 +26,25 @@ import java.util.Date;
 import java.util.Deque;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-
-import com.kinda.crash.activity.DefaultErrorActivity;
-import com.kinda.crash.config.CrashConfig;
+import com.developer.kinda.activity.DefaultErrorActivity;
+import com.developer.kinda.config.CrashConfig;
 
 public final class CrashActivity {
 
     private final static String TAG = "CrashActivity";
 
     //Extras passed to the error activity
-    private static final String EXTRA_CONFIG = "com.kinda.crash.EXTRA_CONFIG";
-    private static final String EXTRA_STACK_TRACE = "com.kinda.crash.EXTRA_STACK_TRACE";
-    private static final String EXTRA_ACTIVITY_LOG = "com.kinda.crash.EXTRA_ACTIVITY_LOG";
+    private static final String EXTRA_CONFIG = "com.developer.kinda.EXTRA_CONFIG";
+    private static final String EXTRA_STACK_TRACE = "com.developer.kinda.EXTRA_STACK_TRACE";
+    private static final String EXTRA_ACTIVITY_LOG = "com.developer.kinda.EXTRA_ACTIVITY_LOG";
 
     //General constants
-    private static final String INTENT_ACTION_ERROR_ACTIVITY = "com.kinda.crash.ERROR";
-    private static final String INTENT_ACTION_RESTART_ACTIVITY = "com.kinda.crash.RESTART";
-    private static final String CRASH_HANDLER_PACKAGE_NAME = "com.kinda.crash.";
+    private static final String INTENT_ACTION_ERROR_ACTIVITY = "com.developer.kinda.ERROR";
+    private static final String INTENT_ACTION_RESTART_ACTIVITY = "com.developer.kinda.RESTART";
+    private static final String CRASH_HANDLER_PACKAGE_NAME = "com.developer.kinda.";
     private static final String DEFAULT_HANDLER_PACKAGE_NAME = "com.android.internal.os";
     private static final int MAX_STACK_TRACE_SIZE = 131071; //128 KB - 1
     private static final int MAX_ACTIVITIES_IN_LOG = 50;
@@ -259,7 +258,7 @@ public final class CrashActivity {
      */
     public static CrashConfig getConfigFromIntent(@NonNull Intent intent) {
         CrashConfig config = (CrashConfig) intent.getSerializableExtra(CrashActivity.EXTRA_CONFIG);
-        if (config.isLogErrorOnRestart()) {
+        if (Objects.requireNonNull(config).isLogErrorOnRestart()) {
             String stackTrace = getStackTraceFromIntent(intent);
             if (stackTrace != null) {
                 Log.e(TAG, "The previous app process crashed. This is the stack trace of the crash:\n" + getStackTraceFromIntent(intent));
@@ -505,7 +504,7 @@ public final class CrashActivity {
 
     /**
      * INTERNAL method used to guess which activity must be called from the error activity to restart the app.
-     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.kinda.crash.RESTART" />,
+     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.developer.kinda.RESTART" />,
      * if it cannot find them, then it will get the default launcher.
      * If there is no default launcher, this returns null.
      *
@@ -528,13 +527,12 @@ public final class CrashActivity {
     }
 
     /**
-     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.kinda.crash.RESTART" />,
+     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.developer.kinda.RESTART" />,
      * If there is no activity with that intent filter, this returns null.
      *
      * @param context A valid context. Must not be null.
      * @return A valid activity class, or null if no suitable one is found
      */
-    @SuppressWarnings("unchecked")
     @Nullable
     private static Class<? extends Activity> getRestartActivityClassWithIntentFilter(@NonNull Context context) {
         Intent searchedIntent = new Intent().setAction(INTENT_ACTION_RESTART_ACTIVITY).setPackage(context.getPackageName());
@@ -579,7 +577,7 @@ public final class CrashActivity {
 
     /**
      * INTERNAL method used to guess which error activity must be called when the app crashes.
-     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.kinda.crash.ERROR" />,
+     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.developer.kinda.ERROR" />,
      * if it cannot find them, then it will use the default error activity.
      *
      * @param context A valid context. Must not be null.
@@ -601,7 +599,7 @@ public final class CrashActivity {
     }
 
     /**
-     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.kinda.crash.ERROR" />,
+     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.developer.kinda.ERROR" />,
      * If there is no activity with that intent filter, this returns null.
      *
      * @param context A valid context. Must not be null.

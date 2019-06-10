@@ -4,11 +4,11 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.kinda.crash.sample"
-        minSdkVersion 15
+        applicationId "com.developer.kinda.crashx"
+        minSdkVersion 21
         targetSdkVersion 29
-        versionCode 5
-        versionName "2.0.19"    //renamed library version properly.
+        versionCode 6
+        versionName "3.0.19"
     }
     buildTypes {
         debug {
@@ -26,7 +26,7 @@ dependencies {
 	implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //ANDROID SUPPORT LIBRARIES
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'

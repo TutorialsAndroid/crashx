@@ -1,4 +1,4 @@
-package com.kinda.crash.sample.activity;
+package com.developer.kinda.crashx.activity;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.kinda.crash.sample.R;
+import com.developer.kinda.crashx.R;
 
 public class MainActivity extends AppCompatActivity {
 
