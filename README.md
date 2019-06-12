@@ -1,10 +1,11 @@
-# CrashX  [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)  [![Known Vulnerabilities](https://snyk.io/test/github/TutorialsAndroid/CrashX/badge.svg?targetFile=library%2Fbuild.gradle)](https://snyk.io/test/github/TutorialsAndroid/CrashX?targetFile=library%2Fbuild.gradle) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CrashX-red.svg?style=flat-square)](https://android-arsenal.com/details/1/7581) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/TutorialsAndroid/crashx)
+# CrashX  [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)  [![Known Vulnerabilities](https://snyk.io/test/github/TutorialsAndroid/CrashX/badge.svg?targetFile=library%2Fbuild.gradle)](https://snyk.io/test/github/TutorialsAndroid/CrashX?targetFile=library%2Fbuild.gradle) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CrashX-red.svg?style=flat-square)](https://android-arsenal.com/details/1/7581) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/TutorialsAndroid/crashx)
 
 This library allows launching a crash activity when the app crashes, instead of showing the hated "Unfortunately, X has stopped" dialog.
 
 **Library Availbale at JitPack.io**
 
 [![](https://jitpack.io/v/TutorialsAndroid/crashx.svg)](https://jitpack.io/#TutorialsAndroid/crashx)
+`Version 30.5.19 is now deprecated use new version v3.0.19`
 
 **Sample Screen**
 
@@ -26,7 +27,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.TutorialsAndroid:crashx:v30.5.19'
+	        implementation 'com.github.TutorialsAndroid:crashx:v3.0.19'
 	}
 
 ...and you are done!
