@@ -1,4 +1,4 @@
-package com.developer.kinda.activity;
+package com.developer.crashx.activity;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
@@ -20,10 +20,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.developer.kinda.CrashActivity;
-import com.developer.kinda.R;
-import com.developer.kinda.config.CrashConfig;
+import com.developer.crashx.CrashActivity;
+import com.developer.crashx.R;
+import com.developer.crashx.config.CrashConfig;
 
+/**
+ * @author akshay sunil masram
+ */
 public final class DefaultErrorActivity extends AppCompatActivity {
 
     @SuppressLint("PrivateResource")
@@ -39,8 +42,6 @@ public final class DefaultErrorActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        //This is needed to avoid a crash if the developer has not specified
-        //an app-level theme that extends Theme.AppCompat
         TypedArray a = obtainStyledAttributes(R.styleable.AppCompatTheme);
         if (!a.hasValue(R.styleable.AppCompatTheme_windowActionBar)) {
             setTheme(R.style.Theme_AppCompat_Light_DarkActionBar);
@@ -48,17 +49,11 @@ public final class DefaultErrorActivity extends AppCompatActivity {
         a.recycle();
 
         setContentView(R.layout.crash_default_error_activity);
-
-        //Close/restart button logic:
-        //If a class if set, use restart.
-        //Else, use close and just finish the app.
-        //It is recommended that you follow this logic if implementing a custom error activity.
         Button restartButton = findViewById(R.id.crash_error_activity_restart_button);
 
         final CrashConfig config = CrashActivity.getConfigFromIntent(getIntent());
 
         if (config == null) {
-            //This should never happen - Just finish the activity to avoid a recursive crash.
             finish();
             return;
         }
@@ -86,8 +81,6 @@ public final class DefaultErrorActivity extends AppCompatActivity {
             moreInfoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //We retrieve all the error data and show it
-
                     AlertDialog dialog = new AlertDialog.Builder(DefaultErrorActivity.this)
                             .setTitle(R.string.customactivityoncrash_error_activity_error_details_title)
                             .setMessage(CrashActivity.getAllErrorDetailsFromIntent(DefaultErrorActivity.this, getIntent()))
@@ -122,8 +115,6 @@ public final class DefaultErrorActivity extends AppCompatActivity {
         String errorInformation = CrashActivity.getAllErrorDetailsFromIntent(DefaultErrorActivity.this, getIntent());
 
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-
-        //Are there any devices without clipboard...?
         if (clipboard != null) {
             ClipData clip = ClipData.newPlainText(getString(R.string.customactivityoncrash_error_activity_error_details_clipboard_label), errorInformation);
             clipboard.setPrimaryClip(clip);

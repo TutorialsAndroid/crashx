@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.developer.kinda.crashx">
+    package="com.developer.crashx.crash">
 
     <application
-        android:name="com.developer.kinda.crashx.CrashingApplication"
+        android:name="com.developer.crashx.crash.CrashingApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/SampleAppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name="com.developer.kinda.crashx.activity.MainActivity"
+            android:name="com.developer.crashx.crash.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
         </activity>
 
         <activity
-            android:name="com.developer.kinda.crashx.activity.ErrorActivity"
+            android:name="com.developer.crashx.crash.activity.ErrorActivity"
             android:label="@string/error_title"
             android:process=":error_activity">
         </activity>

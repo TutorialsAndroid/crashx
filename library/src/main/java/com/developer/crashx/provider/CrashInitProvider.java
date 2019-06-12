@@ -1,4 +1,4 @@
-package com.developer.kinda.provider;
+package com.developer.crashx.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -7,8 +7,11 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.developer.kinda.CrashActivity;
+import com.developer.crashx.CrashActivity;
 
+/**
+ * @author akshay sunil masram
+ */
 public class CrashInitProvider extends ContentProvider {
 
     public boolean onCreate() {

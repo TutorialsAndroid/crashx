@@ -1,4 +1,4 @@
-package com.developer.kinda.config;
+package com.developer.crashx.config;
 
 import android.app.Activity;
 import androidx.annotation.DrawableRes;
@@ -11,8 +11,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Modifier;
 
-import com.developer.kinda.CrashActivity;
+import com.developer.crashx.CrashActivity;
 
+/**
+ * @author akshay sunil masram
+ */
 public class CrashConfig implements Serializable {
 
     @IntDef({BACKGROUND_MODE_CRASH, BACKGROUND_MODE_SHOW_CUSTOM, BACKGROUND_MODE_SILENT})
@@ -157,135 +160,66 @@ public class CrashConfig implements Serializable {
             return builder;
         }
 
-        /**
-         * Defines if the error activity must be launched when the app is on background.
-         * BackgroundMode.BACKGROUND_MODE_SHOW_CUSTOM: launch the error activity when the app is in background,
-         * BackgroundMode.BACKGROUND_MODE_CRASH: launch the default system error when the app is in background,
-         * BackgroundMode.BACKGROUND_MODE_SILENT: crash silently when the app is in background,
-         * The default is BackgroundMode.BACKGROUND_MODE_SHOW_CUSTOM (the app will be brought to front when a crash occurs).
-         */
         @NonNull
         public Builder backgroundMode(@BackgroundMode int backgroundMode) {
             config.backgroundMode = backgroundMode;
             return this;
         }
 
-        /**
-         * Defines if CrashActivity crash interception mechanism is enabled.
-         * Set it to true if you want CrashActivity to intercept crashes,
-         * false if you want them to be treated as if the library was not installed.
-         * The default is true.
-         */
         @NonNull
         public Builder enabled(boolean enabled) {
             config.enabled = enabled;
             return this;
         }
 
-        /**
-         * Defines if the error activity must shown the error details button.
-         * Set it to true if you want to show the full stack trace and device info,
-         * false if you want it to be hidden.
-         * The default is true.
-         */
         @NonNull
         public Builder showErrorDetails(boolean showErrorDetails) {
             config.showErrorDetails = showErrorDetails;
             return this;
         }
 
-        /**
-         * Defines if the error activity should show a restart button.
-         * Set it to true if you want to show a restart button,
-         * false if you want to show a close button.
-         * Note that even if restart is enabled but you app does not have any launcher activities,
-         * a close button will still be used by the default error activity.
-         * The default is true.
-         */
         @NonNull
         public Builder showRestartButton(boolean showRestartButton) {
             config.showRestartButton = showRestartButton;
             return this;
         }
 
-        /**
-         * Defines if the stack trace must be logged again once the custom activity is shown.
-         * Set it to true if you want to log the stack trace again,
-         * false if you don't want the extra logging.
-         * This option exists because the default Android Studio logcat view only shows the output
-         * of the current process, and since the error activity runs on a new process,
-         * you can't see the previous output easily.
-         * Internally, it's logged when getConfigFromIntent() is called.
-         * The default is true.
-         */
         @NonNull
         public Builder logErrorOnRestart(boolean logErrorOnRestart) {
             config.logErrorOnRestart = logErrorOnRestart;
             return this;
         }
 
-        /**
-         * Defines if the activities visited by the user should be tracked
-         * so they are reported when an error occurs.
-         * The default is false.
-         */
         @NonNull
         public Builder trackActivities(boolean trackActivities) {
             config.trackActivities = trackActivities;
             return this;
         }
 
-        /**
-         * Defines the time that must pass between app crashes to determine that we are not
-         * in a crash loop. If a crash has occurred less that this time ago,
-         * the error activity will not be launched and the system crash screen will be invoked.
-         * The default is 3000.
-         */
         @NonNull
         public Builder minTimeBetweenCrashesMs(int minTimeBetweenCrashesMs) {
             config.minTimeBetweenCrashesMs = minTimeBetweenCrashesMs;
             return this;
         }
 
-        /**
-         * Defines which drawable to use in the default error activity image.
-         * Set this if you want to use an image other than the default one.
-         * The default is R.drawable.customactivityoncrash_error_image (a cute upside-down bug).
-         */
         @NonNull
         public Builder errorDrawable(@Nullable @DrawableRes Integer errorDrawable) {
             config.errorDrawable = errorDrawable;
             return this;
         }
 
-        /**
-         * Sets the error activity class to launch when a crash occurs.
-         * If null, the default error activity will be used.
-         */
         @NonNull
         public Builder errorActivity(@Nullable Class<? extends Activity> errorActivityClass) {
             config.errorActivityClass = errorActivityClass;
             return this;
         }
 
-        /**
-         * Sets the main activity class that the error activity must launch when a crash occurs.
-         * If not set or set to null, the default launch activity will be used.
-         * If your app has no launch activities and this is not set, the default error activity will close instead.
-         */
         @NonNull
         public Builder restartActivity(@Nullable Class<? extends Activity> restartActivityClass) {
             config.restartActivityClass = restartActivityClass;
             return this;
         }
 
-        /**
-         * Sets an event listener to be called when events occur, so they can be reported
-         * by the app as, for example, Google Analytics events.
-         * If not set or set to null, no events will be reported.
-         *
-         * @param eventListener The event listener.
-         */
         @NonNull
         public Builder eventListener(@Nullable CrashActivity.EventListener eventListener) {
             if (eventListener != null && eventListener.getClass().getEnclosingClass() != null && !Modifier.isStatic(eventListener.getClass().getModifiers())) {

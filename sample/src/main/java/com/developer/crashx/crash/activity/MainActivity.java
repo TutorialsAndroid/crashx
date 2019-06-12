@@ -1,4 +1,4 @@
-package com.developer.kinda.crashx.activity;
+package com.developer.crashx.crash.activity;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.developer.kinda.crashx.R;
+import com.developer.crashx.crash.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         crashBgThreadButton.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("StaticFieldLeak") //For demo purposes we don't care about leaks
             @Override
             public void onClick(View view) {
                 new AsyncTask<Void, Void, Void>() {
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         crashWithDelayButton.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("StaticFieldLeak") //For demo purposes we don't care about leaks
             @Override
             public void onClick(View view) {
                 new AsyncTask<Void, Void, Void>() {

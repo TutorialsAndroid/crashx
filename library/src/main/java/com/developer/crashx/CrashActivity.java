@@ -1,4 +1,4 @@
-package com.developer.kinda;
+package com.developer.crashx;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -29,22 +29,25 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import com.developer.kinda.activity.DefaultErrorActivity;
-import com.developer.kinda.config.CrashConfig;
+import com.developer.crashx.activity.DefaultErrorActivity;
+import com.developer.crashx.config.CrashConfig;
 
+/**
+ * @author akshay sunil masram
+ */
 public final class CrashActivity {
 
     private final static String TAG = "CrashActivity";
 
     //Extras passed to the error activity
-    private static final String EXTRA_CONFIG = "com.developer.kinda.EXTRA_CONFIG";
-    private static final String EXTRA_STACK_TRACE = "com.developer.kinda.EXTRA_STACK_TRACE";
-    private static final String EXTRA_ACTIVITY_LOG = "com.developer.kinda.EXTRA_ACTIVITY_LOG";
+    private static final String EXTRA_CONFIG = "com.developer.crashx.EXTRA_CONFIG";
+    private static final String EXTRA_STACK_TRACE = "com.developer.crashx.EXTRA_STACK_TRACE";
+    private static final String EXTRA_ACTIVITY_LOG = "com.developer.crashx.EXTRA_ACTIVITY_LOG";
 
     //General constants
-    private static final String INTENT_ACTION_ERROR_ACTIVITY = "com.developer.kinda.ERROR";
-    private static final String INTENT_ACTION_RESTART_ACTIVITY = "com.developer.kinda.RESTART";
-    private static final String CRASH_HANDLER_PACKAGE_NAME = "com.developer.kinda.";
+    private static final String INTENT_ACTION_ERROR_ACTIVITY = "com.developer.crashx.ERROR";
+    private static final String INTENT_ACTION_RESTART_ACTIVITY = "com.developer.crashx.RESTART";
+    private static final String CRASH_HANDLER_PACKAGE_NAME = "com.developer.crashx.";
     private static final String DEFAULT_HANDLER_PACKAGE_NAME = "com.android.internal.os";
     private static final int MAX_STACK_TRACE_SIZE = 131071; //128 KB - 1
     private static final int MAX_ACTIVITIES_IN_LOG = 50;
@@ -60,12 +63,6 @@ public final class CrashActivity {
     private static WeakReference<Activity> lastActivityCreated = new WeakReference<>(null);
     private static boolean isInBackground = true;
 
-
-    /**
-     * Installs CrashActivity on the application using the default error activity.
-     *
-     * @param context Context to use for obtaining the ApplicationContext. Must not be null.
-     */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
     public static void install(@Nullable final Context context) {
         try {
@@ -84,7 +81,6 @@ public final class CrashActivity {
 
                     application = (Application) context.getApplicationContext();
 
-                    //We define a default exception handler that does what we want so it can be called from Crashlytics/ACRA
                     Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                         @Override
                         public void uncaughtException(Thread thread, final Throwable throwable) {
@@ -120,10 +116,6 @@ public final class CrashActivity {
                                         throwable.printStackTrace(pw);
                                         String stackTraceString = sw.toString();
 
-                                        //Reduce data to 128KB so we don't get a TransactionTooLargeException when sending the intent.
-                                        //The limit is 1MB on Android but some devices seem to have it lower.
-                                        //See: http://developer.android.com/reference/android/os/TransactionTooLargeException.html
-                                        //And: http://stackoverflow.com/questions/11451393/what-to-do-on-transactiontoolargeexception#comment46697371_12809171
                                         if (stackTraceString.length() > MAX_STACK_TRACE_SIZE) {
                                             String disclaimer = " [stack trace too large]";
                                             stackTraceString = stackTraceString.substring(0, MAX_STACK_TRACE_SIZE - disclaimer.length()) + disclaimer;
@@ -139,8 +131,6 @@ public final class CrashActivity {
                                         }
 
                                         if (config.isShowRestartButton() && config.getRestartActivityClass() == null) {
-                                            //We can set the restartActivityClass because the app will terminate right now,
-                                            //and when relaunched, will be null again by default.
                                             config.setRestartActivityClass(guessRestartActivityClass(application));
                                         }
 
@@ -155,14 +145,10 @@ public final class CrashActivity {
                                             oldHandler.uncaughtException(thread, throwable);
                                             return;
                                         }
-                                        //If it is null (should not be), we let it continue and kill the process or it will be stuck
                                     }
-                                    //Else (BACKGROUND_MODE_SILENT): do nothing and let the following code kill the process
                                 }
                                 final Activity lastActivity = lastActivityCreated.get();
                                 if (lastActivity != null) {
-                                    //We finish the activity, this solves a bug which causes infinite recursion.
-                                    //See: https://github.com/ACRA/acra/issues/42
                                     lastActivity.finish();
                                     lastActivityCreated.clear();
                                 }
@@ -179,10 +165,6 @@ public final class CrashActivity {
                         @Override
                         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                             if (activity.getClass() != config.getErrorActivityClass()) {
-                                // Copied from ACRA:
-                                // Ignore activityClass because we want the last
-                                // application Activity that was started so that we can
-                                // explicitly kill it off.
                                 lastActivityCreated = new WeakReference<>(activity);
                             }
                             if (config.isTrackActivities()) {
@@ -239,23 +221,11 @@ public final class CrashActivity {
         }
     }
 
-    /**
-     * Given an Intent, returns the stack trace extra from it.
-     *
-     * @param intent The Intent. Must not be null.
-     * @return The stacktrace, or null if not provided.
-     */
     @Nullable
     public static String getStackTraceFromIntent(@NonNull Intent intent) {
         return intent.getStringExtra(CrashActivity.EXTRA_STACK_TRACE);
     }
 
-    /**
-     * Given an Intent, returns the config extra from it.
-     *
-     * @param intent The Intent. Must not be null.
-     * @return The config, or null if not provided.
-     */
     public static CrashConfig getConfigFromIntent(@NonNull Intent intent) {
         CrashConfig config = (CrashConfig) intent.getSerializableExtra(CrashActivity.EXTRA_CONFIG);
         if (Objects.requireNonNull(config).isLogErrorOnRestart()) {
@@ -268,35 +238,19 @@ public final class CrashActivity {
         return config;
     }
 
-    /**
-     * Given an Intent, returns the activity log extra from it.
-     *
-     * @param intent The Intent. Must not be null.
-     * @return The activity log, or null if not provided.
-     */
     @Nullable
     private static String getActivityLogFromIntent(@NonNull Intent intent) {
         return intent.getStringExtra(CrashActivity.EXTRA_ACTIVITY_LOG);
     }
 
-    /**
-     * Given an Intent, returns several error details including the stack trace extra from the intent.
-     *
-     * @param context A valid context. Must not be null.
-     * @param intent  The Intent. Must not be null.
-     * @return The full error details.
-     */
     @NonNull
     public static String getAllErrorDetailsFromIntent(@NonNull Context context, @NonNull Intent intent) {
-        //I don't think that this needs localization because it's a development string...
 
         Date currentDate = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
 
-        //Get build date
         String buildDateAsString = getBuildDateAsString(context, dateFormat);
 
-        //Get app version
         String versionName = getVersionName(context);
 
         String errorDetails = "";
@@ -306,9 +260,6 @@ public final class CrashActivity {
             errorDetails += "Build date: " + buildDateAsString + " \n";
         }
         errorDetails += "Current date: " + dateFormat.format(currentDate) + " \n";
-        //Added a space between line feeds to fix #18.
-        //Ideally, we should not use this method at all... It is only formatted this way because of coupling with the default error activity.
-        //We should move it to a method that returns a bean, and let anyone format it as they wish.
         errorDetails += "Device: " + getDeviceModelName() + " \n \n";
         errorDetails += "Stack trace:  \n";
         errorDetails += getStackTraceFromIntent(intent);
@@ -322,17 +273,6 @@ public final class CrashActivity {
         return errorDetails;
     }
 
-    /**
-     * Given an Intent, restarts the app and launches a startActivity to that intent.
-     * The flags NEW_TASK and CLEAR_TASK are set if the Intent does not have them, to ensure
-     * the app stack is fully cleared.
-     * If an event listener is provided, the restart app event is invoked.
-     * Must only be used from your error activity.
-     *
-     * @param activity The current error activity. Must not be null.
-     * @param intent   The Intent. Must not be null.
-     * @param config   The config object as obtained by calling getConfigFromIntent.
-     */
     private static void restartApplicationWithIntent(@NonNull Activity activity, @NonNull Intent intent, @NonNull CrashConfig config) {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         if (intent.getComponent() != null) {
@@ -357,14 +297,6 @@ public final class CrashActivity {
         restartApplicationWithIntent(activity, intent, config);
     }
 
-    /**
-     * Closes the app.
-     * If an event listener is provided, the close app event is invoked.
-     * Must only be used from your error activity.
-     *
-     * @param activity The current error activity. Must not be null.
-     * @param config   The config object as obtained by calling getConfigFromIntent.
-     */
     public static void closeApplication(@NonNull Activity activity, @NonNull CrashConfig config) {
         if (config.getEventListener() != null) {
             config.getEventListener().onCloseAppFromErrorActivity();
@@ -373,40 +305,17 @@ public final class CrashActivity {
         killCurrentProcess();
     }
 
-    /// INTERNAL METHODS NOT TO BE USED BY THIRD PARTIES
-
-    /**
-     * INTERNAL method that returns the current configuration of the library.
-     * If you want to check the config, use CrashConfig.Builder.get();
-     *
-     * @return the current configuration
-     */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
     @NonNull
     public static CrashConfig getConfig() {
         return config;
     }
 
-    /**
-     * INTERNAL method that sets the configuration of the library.
-     * You must not use this, use CrashConfig.Builder.apply()
-     *
-     * @param config the configuration to use
-     */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
     public static void setConfig(@NonNull CrashConfig config) {
         CrashActivity.config = config;
     }
 
-    /**
-     * INTERNAL method that checks if the stack trace that just crashed is conflictive. This is true in the following scenarios:
-     * - The application has crashed while initializing (handleBindApplication is in the stack)
-     * - The error activity has crashed (activityClass is in the stack)
-     *
-     * @param throwable     The throwable from which the stack trace will be checked
-     * @param activityClass The activity class to launch when the app crashes
-     * @return true if this stack trace is conflictive and the activity must not be launched, false otherwise
-     */
     private static boolean isStackTraceLikelyConflictive(@NonNull Throwable throwable, @NonNull Class<? extends Activity> activityClass) {
         do {
             StackTraceElement[] stackTrace = throwable.getStackTrace();
@@ -419,13 +328,6 @@ public final class CrashActivity {
         return false;
     }
 
-    /**
-     * INTERNAL method that returns the build date of the current APK as a string, or null if unable to determine it.
-     *
-     * @param context    A valid context. Must not be null.
-     * @param dateFormat DateFormat to use to convert from Date to String
-     * @return The formatted date, or "Unknown" if unable to determine it.
-     */
     @Nullable
     private static String getBuildDateAsString(@NonNull Context context, @NonNull DateFormat dateFormat) {
         long buildDate;
@@ -450,12 +352,6 @@ public final class CrashActivity {
         }
     }
 
-    /**
-     * INTERNAL method that returns the version name of the current app, or null if unable to determine it.
-     *
-     * @param context A valid context. Must not be null.
-     * @return The version name, or "Unknown if unable to determine it.
-     */
     @NonNull
     private static String getVersionName(Context context) {
         try {
@@ -466,12 +362,6 @@ public final class CrashActivity {
         }
     }
 
-    /**
-     * INTERNAL method that returns the device model name with correct capitalization.
-     * Taken from: http://stackoverflow.com/a/12707479/1254846
-     *
-     * @return The device model name (i.e., "LGE Nexus 5")
-     */
     @NonNull
     private static String getDeviceModelName() {
         String manufacturer = Build.MANUFACTURER;
@@ -483,12 +373,6 @@ public final class CrashActivity {
         }
     }
 
-    /**
-     * INTERNAL method that capitalizes the first character of a string
-     *
-     * @param s The string to capitalize
-     * @return The capitalized string
-     */
     @NonNull
     private static String capitalize(@Nullable String s) {
         if (s == null || s.length() == 0) {
@@ -502,23 +386,11 @@ public final class CrashActivity {
         }
     }
 
-    /**
-     * INTERNAL method used to guess which activity must be called from the error activity to restart the app.
-     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.developer.kinda.RESTART" />,
-     * if it cannot find them, then it will get the default launcher.
-     * If there is no default launcher, this returns null.
-     *
-     * @param context A valid context. Must not be null.
-     * @return The guessed restart activity class, or null if no suitable one is found
-     */
     @Nullable
     private static Class<? extends Activity> guessRestartActivityClass(@NonNull Context context) {
         Class<? extends Activity> resolvedActivityClass;
-
-        //If action is defined, use that
         resolvedActivityClass = getRestartActivityClassWithIntentFilter(context);
 
-        //Else, get the default launcher activity
         if (resolvedActivityClass == null) {
             resolvedActivityClass = getLauncherActivity(context);
         }
@@ -526,13 +398,6 @@ public final class CrashActivity {
         return resolvedActivityClass;
     }
 
-    /**
-     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.developer.kinda.RESTART" />,
-     * If there is no activity with that intent filter, this returns null.
-     *
-     * @param context A valid context. Must not be null.
-     * @return A valid activity class, or null if no suitable one is found
-     */
     @Nullable
     private static Class<? extends Activity> getRestartActivityClassWithIntentFilter(@NonNull Context context) {
         Intent searchedIntent = new Intent().setAction(INTENT_ACTION_RESTART_ACTIVITY).setPackage(context.getPackageName());
@@ -552,14 +417,6 @@ public final class CrashActivity {
         return null;
     }
 
-    /**
-     * INTERNAL method used to get the default launcher activity for the app.
-     * If there is no launchable activity, this returns null.
-     *
-     * @param context A valid context. Must not be null.
-     * @return A valid activity class, or null if no suitable one is found
-     */
-    @SuppressWarnings("unchecked")
     @Nullable
     private static Class<? extends Activity> getLauncherActivity(@NonNull Context context) {
         Intent intent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
@@ -575,22 +432,10 @@ public final class CrashActivity {
         return null;
     }
 
-    /**
-     * INTERNAL method used to guess which error activity must be called when the app crashes.
-     * It will first get activities from the AndroidManifest with intent filter <action android:name="com.developer.kinda.ERROR" />,
-     * if it cannot find them, then it will use the default error activity.
-     *
-     * @param context A valid context. Must not be null.
-     * @return The guessed error activity class, or the default error activity if not found
-     */
     @NonNull
     private static Class<? extends Activity> guessErrorActivityClass(@NonNull Context context) {
         Class<? extends Activity> resolvedActivityClass;
-
-        //If action is defined, use that
         resolvedActivityClass = getErrorActivityClassWithIntentFilter(context);
-
-        //Else, get the default error activity
         if (resolvedActivityClass == null) {
             resolvedActivityClass = DefaultErrorActivity.class;
         }
@@ -598,14 +443,6 @@ public final class CrashActivity {
         return resolvedActivityClass;
     }
 
-    /**
-     * INTERNAL method used to get the first activity with an intent-filter <action android:name="com.developer.kinda.ERROR" />,
-     * If there is no activity with that intent filter, this returns null.
-     *
-     * @param context A valid context. Must not be null.
-     * @return A valid activity class, or null if no suitable one is found
-     */
-    @SuppressWarnings("unchecked")
     @Nullable
     private static Class<? extends Activity> getErrorActivityClassWithIntentFilter(@NonNull Context context) {
         Intent searchedIntent = new Intent().setAction(INTENT_ACTION_ERROR_ACTIVITY).setPackage(context.getPackageName());
@@ -617,7 +454,6 @@ public final class CrashActivity {
             try {
                 return (Class<? extends Activity>) Class.forName(resolveInfo.activityInfo.name);
             } catch (ClassNotFoundException e) {
-                //Should not happen, print it to the log!
                 Log.e(TAG, "Failed when resolving the error activity class via intent filter, stack trace follows!", e);
             }
         }
@@ -625,40 +461,20 @@ public final class CrashActivity {
         return null;
     }
 
-    /**
-     * INTERNAL method that kills the current process.
-     * It is used after restarting or killing the app.
-     */
     private static void killCurrentProcess() {
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(10);
     }
 
-    /**
-     * INTERNAL method that stores the last crash timestamp
-     *
-     * @param timestamp The current timestamp.
-     */
     @SuppressLint("ApplySharedPref") //This must be done immediately since we are killing the app
     private static void setLastCrashTimestamp(@NonNull Context context, long timestamp) {
         context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE).edit().putLong(SHARED_PREFERENCES_FIELD_TIMESTAMP, timestamp).commit();
     }
 
-    /**
-     * INTERNAL method that gets the last crash timestamp
-     *
-     * @return The last crash timestamp, or -1 if not set.
-     */
     private static long getLastCrashTimestamp(@NonNull Context context) {
         return context.getSharedPreferences(SHARED_PREFERENCES_FILE, Context.MODE_PRIVATE).getLong(SHARED_PREFERENCES_FIELD_TIMESTAMP, -1);
     }
 
-    /**
-     * INTERNAL method that tells if the app has crashed in the last seconds.
-     * This is used to avoid restart loops.
-     *
-     * @return true if the app has crashed in the last seconds, false otherwise.
-     */
     private static boolean hasCrashedInTheLastSeconds(@NonNull Context context) {
         long lastTimestamp = getLastCrashTimestamp(context);
         long currentTimestamp = new Date().getTime();
@@ -666,10 +482,6 @@ public final class CrashActivity {
         return (lastTimestamp <= currentTimestamp && currentTimestamp - lastTimestamp < config.getMinTimeBetweenCrashesMs());
     }
 
-    /**
-     * Interface to be called when events occur, so they can be reported
-     * by the app as, for example, Google Analytics events.
-     */
     public interface EventListener extends Serializable {
         void onLaunchErrorActivity();
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.developer.kinda">
+    package="com.developer.crashx">
 
     <application>
         <activity
-            android:name="com.developer.kinda.activity.DefaultErrorActivity"
+            android:name="com.developer.crashx.activity.DefaultErrorActivity"
             android:process=":error_activity" />
         <provider
-            android:name="com.developer.kinda.provider.CrashInitProvider"
+            android:name="com.developer.crashx.provider.CrashInitProvider"
             android:authorities="${applicationId}.crashinitprovider"
             android:exported="false"
             android:initOrder="101" />

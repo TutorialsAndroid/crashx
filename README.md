@@ -144,7 +144,7 @@ restartActivity(Class<? extends Activity>);
 ```
 > This method sets the activity that must be launched by the error activity when the user presses the button to restart the app.
 > If you don't set it (or set it to null), the library will use the first activity on your manifest that has an intent-filter with action
-> `com.developer.kinda.RESTART`, and if there is none, the default launchable activity on your app.
+> `com.developer.crashx.RESTART`, and if there is none, the default launchable activity on your app.
 > If no launchable activity can be found and you didn't specify any, the "restart app" button will become a "close app" button,
 > even if `showRestartButton` is set to `true`.
 >
@@ -152,7 +152,7 @@ restartActivity(Class<? extends Activity>);
 > ```xml
 > <intent-filter>
 >     <!-- ... -->
->     <action android:name="com.developer.kinda.RESTART" />
+>     <action android:name="com.developer.crashx.RESTART" />
 > </intent-filter>
 > ```
 
@@ -162,13 +162,13 @@ errorActivity(Class<? extends Activity>);
 > This method allows you to set a custom error activity to be launched, instead of the default one.
 > Use it if you need further customization that is not just strings, colors or themes (see below).
 > If you don't set it (or set it to null), the library will use the first activity on your manifest that has an intent-filter with action
-> `com.developer.kinda.ERROR`, and if there is none, a default error activity from the library.
+> `com.developer.crashx.ERROR`, and if there is none, a default error activity from the library.
 > If you use this, the activity **must** be declared in your `AndroidManifest.xml`, with `process` set to `:error_activity`.
 >
 > Example:
 > ```xml
 > <activity
->     android:name="com.developer.kinda.sample.CustomErrorActivity"
+>     android:name="com.developer.crashx.sample.CustomErrorActivity"
 >     android:label="@string/error_title"
 >     android:process=":error_activity" />
 > ```
@@ -177,7 +177,7 @@ errorActivity(Class<? extends Activity>);
 > ```xml
 > <intent-filter>
 >     <!-- ... -->
->     <action android:name="com.developer.kinda.ERROR" />
+>     <action android:name="com.developer.crashx.ERROR" />
 > </intent-filter>
 > ```
 
@@ -200,7 +200,7 @@ If you want to specify a specific theme only for the error activity, you can do 
 
 ```xml
 <activity
-    android:name="com.developer.kinda.activity.DefaultErrorActivity"
+    android:name="com.developer.crashx.activity.DefaultErrorActivity"
     android:theme="@style/YourThemeHere"
     android:process=":error_activity" />
 ```
