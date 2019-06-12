@@ -5,7 +5,7 @@ This library allows launching a crash activity when the app crashes, instead of 
 **Library Availbale at JitPack.io**
 
 [![](https://jitpack.io/v/TutorialsAndroid/crashx.svg)](https://jitpack.io/#TutorialsAndroid/crashx)
-`Version 30.5.19 is now deprecated use new version v3.0.19`
+`Version 30.5.19 is now deprecated use new version v4.0.19`
 
 **Sample Screen**
 
@@ -27,7 +27,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.TutorialsAndroid:crashx:v3.0.19'
+	        implementation 'com.github.TutorialsAndroid:crashx:v4.0.19'
 	}
 
 ...and you are done!
