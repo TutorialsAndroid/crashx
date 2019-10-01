@@ -11,9 +11,6 @@ This library allows launching a crash activity when the app crashes, instead of 
 
 `Latest version of this library is migrated to androidx`
 
-## Download My Kinda App. A new way to debate on the topic
-[![](https://github.com/TutorialsAndroid/Spoti/blob/master/art/google-play-badge.png)](https://bit.ly/kindadownload)
-
 **Sample Screen**
 
 ![](https://github.com/TutorialsAndroid/crashx/blob/master/images/device-2019-03-19-154405.png)
