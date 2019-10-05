@@ -9,7 +9,9 @@ This library allows launching a crash activity when the app crashes, instead of 
 [![](https://jitpack.io/v/TutorialsAndroid/crashx.svg)](https://jitpack.io/#TutorialsAndroid/crashx)
 `Version 30.5.19 is now deprecated use new version v4.0.19`
 
-`Latest version of this library is migrated to androidx`
+## Important
+
+**Note this library was made in the making for `Kinda` app this library was copied from `CustomActivityOnCrash-master` repository on github we made this library because we want to use own library on `Kinda` app.**
 
 **Sample Screen**
 
