@@ -8,13 +8,9 @@ This library allows launching a crash activity when the app crashes, instead of 
 
 [![](https://jitpack.io/v/TutorialsAndroid/crashx.svg)](https://jitpack.io/#TutorialsAndroid/crashx)
 
-## Hire-Us
+## Hire-Me
 
-<p align="center">Are you having trouble in your android projects then let us help you with it just Email Us. We love our users, so feel free to visit https://asm.life
-
-## Download Our New App
-
-[Cocktail Friendship App](https://play.google.com/store/apps/details?id=developer.cocktail)
+<p align="center">Are you having trouble in your android projects then let me help you with it just Email me. I love my users, so feel free to visit https://asm.life
 
 **Sample Screen**
 
