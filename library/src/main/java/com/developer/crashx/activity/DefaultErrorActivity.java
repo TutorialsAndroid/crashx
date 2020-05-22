@@ -3,7 +3,6 @@ package com.developer.crashx.activity;
 import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,7 +24,7 @@ import com.developer.crashx.R;
 import com.developer.crashx.config.CrashConfig;
 
 /**
- * @author akshay sunil masram
+ * @author tkdco , TutorialsAndroid
  */
 public final class DefaultErrorActivity extends AppCompatActivity {
 
@@ -60,43 +59,25 @@ public final class DefaultErrorActivity extends AppCompatActivity {
 
         if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
             restartButton.setText(R.string.customactivityoncrash_error_activity_restart_app);
-            restartButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CrashActivity.restartApplication(DefaultErrorActivity.this, config);
-                }
-            });
+            restartButton.setOnClickListener(v -> CrashActivity.restartApplication(DefaultErrorActivity.this, config));
         } else {
-            restartButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CrashActivity.closeApplication(DefaultErrorActivity.this, config);
-                }
-            });
+            restartButton.setOnClickListener(v -> CrashActivity.closeApplication(DefaultErrorActivity.this, config));
         }
 
         Button moreInfoButton = findViewById(R.id.crash_error_activity_more_info_button);
 
         if (config.isShowErrorDetails()) {
-            moreInfoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AlertDialog dialog = new AlertDialog.Builder(DefaultErrorActivity.this)
-                            .setTitle(R.string.customactivityoncrash_error_activity_error_details_title)
-                            .setMessage(CrashActivity.getAllErrorDetailsFromIntent(DefaultErrorActivity.this, getIntent()))
-                            .setPositiveButton(R.string.customactivityoncrash_error_activity_error_details_close, null)
-                            .setNeutralButton(R.string.customactivityoncrash_error_activity_error_details_copy,
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            copyErrorToClipboard();
-                                        }
-                                    })
-                            .show();
-                    TextView textView = dialog.findViewById(android.R.id.message);
-                    if (textView != null) {
-                        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.customactivityoncrash_error_activity_error_details_text_size));
-                    }
+            moreInfoButton.setOnClickListener(v -> {
+                AlertDialog dialog = new AlertDialog.Builder(DefaultErrorActivity.this)
+                        .setTitle(R.string.customactivityoncrash_error_activity_error_details_title)
+                        .setMessage(CrashActivity.getAllErrorDetailsFromIntent(DefaultErrorActivity.this, getIntent()))
+                        .setPositiveButton(R.string.customactivityoncrash_error_activity_error_details_close, null)
+                        .setNeutralButton(R.string.customactivityoncrash_error_activity_error_details_copy,
+                                (dialog1, which) -> copyErrorToClipboard())
+                        .show();
+                TextView textView = dialog.findViewById(android.R.id.message);
+                if (textView != null) {
+                    textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.customactivityoncrash_error_activity_error_details_text_size));
                 }
             });
         } else {

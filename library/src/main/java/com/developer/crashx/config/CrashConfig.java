@@ -14,15 +14,13 @@ import java.lang.reflect.Modifier;
 import com.developer.crashx.CrashActivity;
 
 /**
- * @author akshay sunil masram
+ * @author tkdco , TutorialsAndroid
  */
 public class CrashConfig implements Serializable {
 
     @IntDef({BACKGROUND_MODE_CRASH, BACKGROUND_MODE_SHOW_CUSTOM, BACKGROUND_MODE_SILENT})
     @Retention(RetentionPolicy.SOURCE)
-    private @interface BackgroundMode {
-        //I hate empty blocks
-    }
+    private @interface BackgroundMode { }
 
     static final int BACKGROUND_MODE_SILENT = 0;
     public static final int BACKGROUND_MODE_SHOW_CUSTOM = 1;

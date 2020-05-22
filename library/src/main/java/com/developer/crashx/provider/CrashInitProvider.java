@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import com.developer.crashx.CrashActivity;
 
 /**
- * @author akshay sunil masram
+ * @author tkdco , TutorialsAndroid
  */
 public class CrashInitProvider extends ContentProvider {
 
