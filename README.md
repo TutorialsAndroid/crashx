@@ -12,6 +12,11 @@ This library allows launching a crash activity when the app crashes, instead of 
 
 <p align="center">Are you having trouble in your android projects then let me help you with it just Email me. I love my users, so feel free to visit http://asm.life
 
+## And Don't Forget To Follow Me On Instagram
+
+<p align="center">Follow me on instagram to stay up-to-date https://instagram.com/akshaysunilmasram 
+    
+
 **Sample Screen**
 
 ![](https://github.com/TutorialsAndroid/crashx/blob/master/images/device-2019-03-19-154405.png)
