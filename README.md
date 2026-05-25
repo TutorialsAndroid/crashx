@@ -20,7 +20,7 @@
   <img src="https://img.shields.io/badge/Java-Ready-orange.svg" alt="Java Ready" />
   <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License" />
   <img src="https://img.shields.io/badge/Maintained-Yes-success.svg" alt="Maintained" />
-  <img src="https://img.shields.io/badge/Version-v7.0.0-purple.svg" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v7.0.1-purple.svg" alt="Version" />
 </p>
 
 <p align="center">
@@ -92,9 +92,9 @@ The default Android crash dialog is generic and does not help users recover. Cra
 
 ---
 
-## What's new in v7.0.0
+## What's new in v7.X.X
 
-CrashX v7.0.0 is a major transparency, modernization, and feature upgrade.
+CrashX v7.0.1 is a major transparency, modernization, and feature upgrade.
 
 ### Attribution and open-source clarity
 
@@ -122,7 +122,7 @@ CrashX v7.0.0 is a major transparency, modernization, and feature upgrade.
 
 ### Color customization
 
-CrashX v7.0.0 allows direct color customization from Java configuration:
+CrashX v7.0.1 allows direct color customization from Java configuration:
 
 - Background color
 - Card background color
@@ -150,7 +150,7 @@ CrashX v7.0.0 allows direct color customization from Java configuration:
 
 ### Crash metadata
 
-CrashX v7.0.0 can include:
+CrashX v7.0.1 can include:
 
 - Crash ID
 - Package name
@@ -251,7 +251,7 @@ Add this in your app module `build.gradle` file.
 
 ```kotlin
 dependencies {
-    implementation("com.github.TutorialsAndroid:crashx:v7.0.0")
+    implementation("com.github.TutorialsAndroid:crashx:v7.0.1")
 }
 ```
 
@@ -259,7 +259,7 @@ dependencies {
 
 ```gradle
 dependencies {
-    implementation 'com.github.TutorialsAndroid:crashx:v7.0.0'
+    implementation 'com.github.TutorialsAndroid:crashx:v7.0.1'
 }
 ```
 
@@ -267,7 +267,7 @@ dependencies {
 
 ### Step 3: Minimum SDK
 
-CrashX v7.0.0 is designed for modern Android projects.
+CrashX v7.X.X is designed for modern Android projects.
 
 ```gradle
 android {
@@ -333,9 +333,9 @@ Register your `Application` class in `AndroidManifest.xml`:
 
 ---
 
-## Full professional v7.0.0 configuration
+## Full professional v7.X.X configuration
 
-This example uses most of the new v7.0.0 features.
+This example uses most of the new v7.X.X features.
 
 ```java
 CrashConfig.Builder.create()
@@ -543,7 +543,7 @@ This can help you understand what the user was doing before the crash.
 .maxActivityLogEntries(50)
 ```
 
-CrashX v7.0.0 uses a bounded Activity log queue, so the log does not grow forever.
+CrashX v7.X.X uses a bounded Activity log queue, so the log does not grow forever.
 
 ---
 
@@ -635,7 +635,7 @@ Important: the listener must not be an anonymous or non-static inner class becau
 
 ## UI customization
 
-CrashX v7.0.0 allows direct UI customization from Java configuration.
+CrashX v7.X.X allows direct UI customization from Java configuration.
 
 ### Custom text
 
@@ -684,7 +684,7 @@ When enabled, the default crash screen can display app and crash metadata such a
 
 ## Crash report sharing
 
-CrashX v7.0.0 can show a report button and prepare a shareable crash report.
+CrashX v7.X.X can show a report button and prepare a shareable crash report.
 
 ```java
 .showReportButton(true)
@@ -1093,12 +1093,12 @@ CrashX improves the crash recovery experience, but it is not a replacement for p
 
 ---
 
-## Migration guide for v7.0.0
+## Migration guide for v7.0.1
 
 ### 1. Update dependency
 
 ```gradle
-implementation 'com.github.TutorialsAndroid:crashx:v7.0.0'
+implementation 'com.github.TutorialsAndroid:crashx:v7.0.1'
 ```
 
 ### 2. Add attribution files
@@ -1120,7 +1120,7 @@ import com.developer.crashx.config.CrashConfig;
 
 ### 4. Replace upgraded source files
 
-For the v7.0.0 upgrade, replace these files in the library module:
+For the v7.0.1 upgrade, replace these files in the library module:
 
 ```txt
 library/src/main/java/com/developer/crashx/CrashActivity.java
@@ -1168,18 +1168,18 @@ CrashConfig.Builder.create()
 ### 6. Test crash screen
 
 ```java
-throw new RuntimeException("CrashX v7.0.0 migration test");
+throw new RuntimeException("CrashX v7.0.1 migration test");
 ```
 
 ---
 
 ## Build and release checklist
 
-Before publishing `v7.0.0`, verify:
+Before publishing `v7.0.1`, verify:
 
-- `README.md` uses `v7.0.0` everywhere.
-- GitHub release tag is exactly `v7.0.0`.
-- JitPack dependency points to `com.github.TutorialsAndroid:crashx:v7.0.0`.
+- `README.md` uses `v7.0.1` everywhere.
+- GitHub release tag is exactly `v7.0.1`.
+- JitPack dependency points to `com.github.TutorialsAndroid:crashx:v7.0.1`.
 - `CrashActivity.VERSION` is `7.0.0`.
 - `NOTICE` file exists.
 - Apache 2.0 license exists.
