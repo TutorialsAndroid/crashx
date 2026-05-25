@@ -13,8 +13,11 @@
 </p>
 
 <p align="center">
+  <a href="https://central.sonatype.com/artifact/io.github.tutorialsandroid/crashx">
+    <img src="https://img.shields.io/maven-central/v/io.github.tutorialsandroid/crashx.svg?label=Maven%20Central" alt="Maven Central" />
+  </a>
   <a href="https://jitpack.io/#TutorialsAndroid/crashx">
-    <img src="https://jitpack.io/v/TutorialsAndroid/crashx.svg" alt="JitPack" />
+    <img src="https://jitpack.io/v/TutorialsAndroid/crashx.svg?label=JitPack" alt="JitPack" />
   </a>
   <img src="https://img.shields.io/badge/Android-API%2023%2B-brightgreen.svg" alt="Android API" />
   <img src="https://img.shields.io/badge/Java-Ready-orange.svg" alt="Java Ready" />
@@ -191,11 +194,86 @@ CrashX v7.0.1 can include:
   <img src="images/Screenshot_1779711035.png" width="320" alt="CrashX Sample Screen" />
 </p>
 
----
-
 ## Installation
 
-CrashX is available through **JitPack**.
+CrashX is available through **Maven Central**.
+
+JitPack is also supported as an alternative installation source.
+
+---
+
+### Option 1: Maven Central
+
+Maven Central is the recommended installation method.
+
+### Step 1: Add Maven Central repository
+
+#### Gradle Kotlin DSL
+
+Add this in your root `settings.gradle.kts`:
+
+```kotlin
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+````
+
+#### Gradle Groovy DSL
+
+Add this in your root `settings.gradle`:
+
+```gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+```
+
+For older Gradle projects, add this in your root `build.gradle`:
+
+```gradle
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+```
+
+---
+
+### Step 2: Add CrashX dependency
+
+Add this in your app module `build.gradle` file.
+
+#### Gradle Kotlin DSL
+
+```kotlin
+dependencies {
+    implementation("io.github.tutorialsandroid:crashx:7.0.1")
+}
+```
+
+#### Gradle Groovy DSL
+
+```gradle
+dependencies {
+    implementation 'io.github.tutorialsandroid:crashx:7.0.1'
+}
+```
+
+---
+
+### Option 2: JitPack
+
+Use JitPack only if you want to install CrashX directly from the GitHub release tag.
 
 ### Step 1: Add JitPack repository
 
@@ -229,7 +307,7 @@ dependencyResolutionManagement {
 }
 ```
 
-For older Gradle projects, add JitPack in your root `build.gradle`:
+For older Gradle projects, add this in your root `build.gradle`:
 
 ```gradle
 allprojects {
@@ -243,7 +321,7 @@ allprojects {
 
 ---
 
-### Step 2: Add CrashX dependency
+### Step 2: Add CrashX JitPack dependency
 
 Add this in your app module `build.gradle` file.
 
@@ -265,7 +343,7 @@ dependencies {
 
 ---
 
-### Step 3: Minimum SDK
+### Minimum SDK
 
 CrashX v7.X.X is designed for modern Android projects.
 
