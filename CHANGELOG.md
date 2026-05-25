@@ -1,6 +1,6 @@
-# CrashX v7.0.0
+# CrashX v7.0.1
 
-CrashX v7.0.0 is a major transparency, maintenance, and modernization release.
+CrashX v7.0.1 is a major transparency, maintenance, and modernization release.
 
 ## Added
 
@@ -33,7 +33,7 @@ CrashX v7.0.0 is a major transparency, maintenance, and modernization release.
 
 ## Changed
 
-- Version updated to v7.0.0.
+- Version updated to v7.0.1.
 - SharedPreferences file name changed to `crashx`.
 - Default error UI redesigned for a cleaner production-ready look.
 - Activity log is now a bounded queue.
