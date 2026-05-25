@@ -4,24 +4,36 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.developer.crashx.CrashActivity;
 
 /**
- * @author tkdco , TutorialsAndroid
+ * Auto-initializes CrashX through Android's ContentProvider startup mechanism.
+ *
+ * <p>Originally derived from CustomActivityOnCrash by Eduard Ereza Martínez.</p>
+ * <p>Modernized and maintained as CrashX by TutorialsAndroid.</p>
  */
 public class CrashInitProvider extends ContentProvider {
 
+    @Override
     public boolean onCreate() {
+        if (getContext() == null) {
+            return false;
+        }
         CrashActivity.install(getContext());
-        return false;
+        return true;
     }
 
     @Nullable
     @Override
-    public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
+    public Cursor query(@NonNull Uri uri,
+                        @Nullable String[] projection,
+                        @Nullable String selection,
+                        @Nullable String[] selectionArgs,
+                        @Nullable String sortOrder) {
         return null;
     }
 
@@ -43,8 +55,10 @@ public class CrashInitProvider extends ContentProvider {
     }
 
     @Override
-    public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
+    public int update(@NonNull Uri uri,
+                      @Nullable ContentValues values,
+                      @Nullable String selection,
+                      @Nullable String[] selectionArgs) {
         return 0;
     }
-
 }

@@ -1,324 +1,1326 @@
-![](https://github.com/TutorialsAndroid/crashx/blob/master/sample/src/main/res/mipmap-xxhdpi/ic_launcher.png)
+<p align="center">
+  <img src="https://github.com/TutorialsAndroid/crashx/blob/master/sample/src/main/res/mipmap-xxhdpi/ic_launcher.png" width="112" alt="CrashX Logo" />
+</p>
 
-# CrashX  [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)  [![Known Vulnerabilities](https://snyk.io/test/github/TutorialsAndroid/CrashX/badge.svg?targetFile=library%2Fbuild.gradle)](https://snyk.io/test/github/TutorialsAndroid/CrashX?targetFile=library%2Fbuild.gradle) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CrashX-red.svg?style=flat-square)](https://android-arsenal.com/details/1/7581) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/TutorialsAndroid/crashx)
+<h1 align="center">CrashX</h1>
 
-This library allows launching a crash activity when the app crashes, instead of showing the hated "Unfortunately, X has stopped" dialog.
+<p align="center">
+  <strong>A modern Android crash screen library for a cleaner, safer, and more professional app crash recovery experience.</strong>
+</p>
 
-**Library Availbale at JitPack.io**
+<p align="center">
+  Replace the default Android crash dialog with a friendly, configurable crash screen that supports restart, close, technical details, crash IDs, app/device metadata, copy-to-clipboard, and crash report sharing.
+</p>
 
-[![](https://jitpack.io/v/TutorialsAndroid/crashx.svg)](https://jitpack.io/#TutorialsAndroid/crashx)
+<p align="center">
+  <a href="https://jitpack.io/#TutorialsAndroid/crashx">
+    <img src="https://jitpack.io/v/TutorialsAndroid/crashx.svg" alt="JitPack" />
+  </a>
+  <img src="https://img.shields.io/badge/Android-API%2023%2B-brightgreen.svg" alt="Android API" />
+  <img src="https://img.shields.io/badge/Java-Ready-orange.svg" alt="Java Ready" />
+  <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License" />
+  <img src="https://img.shields.io/badge/Maintained-Yes-success.svg" alt="Maintained" />
+  <img src="https://img.shields.io/badge/Version-v7.0.0-purple.svg" alt="Version" />
+</p>
 
+<p align="center">
+  <a href="#installation">Installation</a> •
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#whats-new-in-v700">What's New</a> •
+  <a href="#configuration">Configuration</a> •
+  <a href="#custom-error-activity">Custom Error Activity</a> •
+  <a href="#important-attribution">Attribution</a> •
+  <a href="#license">License</a>
+</p>
 
-## And Don't Forget To Follow Me On Instagram
+---
 
-<p align="center">Follow me on instagram to stay up-to-date https://instagram.com/a.masram444
-    
+## Important attribution
 
-**Sample Screen**
+CrashX is a maintained and modified derivative of the excellent open-source library **CustomActivityOnCrash**, originally created by **Eduard Ereza Martínez**.
 
-![](https://github.com/TutorialsAndroid/crashx/blob/master/images/device-2019-03-19-154405.png)
+- Original project: https://github.com/Ereza/CustomActivityOnCrash
+- Original author: Eduard Ereza Martínez
+- Original license: Apache License 2.0
 
-## How to use
+CrashX keeps the Apache License 2.0, preserves attribution, and adds new maintenance work, documentation, Android compatibility improvements, crash-screen customization, reporting features, and CrashX-specific updates.
 
-### One-step install
+This repository is not intended to hide, replace, or misrepresent the original author's work. It exists as a continued maintenance and modernization effort with clear credit to the original project.
 
-Add it in your root build.gradle at the end of repositories:
+Please see the [`NOTICE`](NOTICE) file for attribution details.
 
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+---
 
-Step 2. Add the dependency
+## What is CrashX?
 
-	dependencies {
-	        implementation 'com.github.TutorialsAndroid:crashx:v6.0.19'
-	}
+CrashX is an Android library that catches uncaught Java/Kotlin exceptions and opens a custom error screen instead of immediately showing the default Android crash dialog.
 
-...and you are done!
+It helps developers provide a better crash recovery experience by allowing users to restart the app, close the app, view technical details, copy crash information, or share a crash report.
 
-Of course, you can combine this library with any other crash handler such as Crashlytics, ACRA or Firebase, just set them up as you would normally.
+CrashX is useful when you want to:
 
-### Try it
+- Show a professional crash screen instead of the default system crash dialog.
+- Let users restart the app safely after an unexpected crash.
+- Let users close the app cleanly.
+- Show or hide technical crash details based on your build type.
+- Share crash reports through email or Android share sheet.
+- Add a support email for crash reporting.
+- Customize title, message, icon, colors, and button labels.
+- Display a unique crash ID on the crash screen.
+- Include app version, CrashX version, Android version, API level, device name, brand, manufacturer, crash date, thread name, and stack trace in reports.
+- Track recent Activity lifecycle events before the crash.
+- Prevent infinite crash restart loops.
+- Keep your open-source attribution and licensing transparent.
 
-Force an app crash by throwing an uncaught exception, using something like this in your code:
-```java
-throw new RuntimeException("Kinda!");
+---
+
+## Why CrashX?
+
+Even well-tested apps can crash because of device-specific behavior, third-party SDK issues, network edge cases, unexpected null values, database errors, lifecycle timing issues, or unhandled exceptions.
+
+The default Android crash dialog is generic and does not help users recover. CrashX gives your app a controlled, branded, and more professional fallback experience.
+
+| Default Android crash | CrashX |
+|---|---|
+| Generic system crash dialog | Branded custom crash screen |
+| No custom recovery UI | Restart and close buttons |
+| No friendly explanation | Custom title and message |
+| No simple reporting flow | Optional report/share button |
+| No custom metadata | Crash ID, app info, device info, thread, stack trace |
+| No UI control | Fully configurable colors and labels |
+| Poor user experience | Professional recovery screen |
+
+---
+
+## What's new in v7.0.0
+
+CrashX v7.0.0 is a major transparency, modernization, and feature upgrade.
+
+### Attribution and open-source clarity
+
+- Clear attribution to CustomActivityOnCrash and Eduard Ereza Martínez.
+- Added `NOTICE` file with original project credit and derivative-work note.
+- Source headers now clearly mention the original project and CrashX maintenance.
+- Documentation now clearly explains the relationship with the original project.
+- Apache License 2.0 notice preserved.
+
+### Crash screen UI improvements
+
+- Modern default crash screen.
+- Configurable crash screen title.
+- Configurable crash screen message.
+- Configurable restart button text.
+- Configurable close button text.
+- Configurable details button text.
+- Configurable report button text.
+- Configurable copy button text.
+- Separate restart and close buttons.
+- Optional close button visibility.
+- Optional crash ID display.
+- Optional app information display.
+- Custom crash screen icon through `errorDrawable()`.
+
+### Color customization
+
+CrashX v7.0.0 allows direct color customization from Java configuration:
+
+- Background color
+- Card background color
+- Primary button color
+- Secondary button color
+- Title text color
+- Message text color
+- Button text color
+- Secondary button text color
+- Meta text color
+
+### Crash reporting improvements
+
+- Optional crash report/share button.
+- Optional support email for report sharing.
+- Optional report email subject.
+- Optional Android chooser title.
+- Optional extra report information.
+- Optional stack trace in reports.
+- Optional device info in reports.
+- Optional build date in reports.
+- Optional crash ID in reports.
+- Optional activity lifecycle log in reports.
+- Copy crash details from the details dialog.
+
+### Crash metadata
+
+CrashX v7.0.0 can include:
+
+- Crash ID
+- Package name
+- App version
+- CrashX version
+- Android version
+- API level
+- Device model
+- Brand
+- Manufacturer
+- Crash date
+- Crash thread
+- Throwable class
+- Throwable message
+- Stack trace
+- Build date
+- Activity lifecycle log
+- Additional developer-defined report information
+
+### Safety and reliability improvements
+
+- Safer `getConfigFromIntent()` handling.
+- Safer crash-loop protection.
+- Configurable minimum time between crashes.
+- Bounded Activity lifecycle log queue.
+- Configurable Activity log size.
+- Configurable stack trace trimming size.
+- Improved foreground/background tracking.
+- Improved `CrashInitProvider` initialization return value.
+- Preserves previous uncaught exception handler where possible.
+- Default error activity runs in a separate `:error_activity` process.
+
+---
+
+## Sample screen
+
+<p align="center">
+  <img src="https://github.com/TutorialsAndroid/crashx/blob/master/images/device-2019-03-19-154405.png" width="320" alt="CrashX Sample Screen" />
+</p>
+
+---
+
+## Installation
+
+CrashX is available through **JitPack**.
+
+### Step 1: Add JitPack repository
+
+#### Gradle Kotlin DSL
+
+Add this in your root `settings.gradle.kts`:
+
+```kotlin
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+}
 ```
 
-### Advanced setup
+#### Gradle Groovy DSL
 
-You can customize the behavior of this library in several ways by setting its configuration at any moment.
-However, it's recommended to do it on your `Application` class so it becomes available as soon as possible.
+Add this in your root `settings.gradle`:
 
-Add a snippet like this to your `Application` class:
+```gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+For older Gradle projects, add JitPack in your root `build.gradle`:
+
+```gradle
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+---
+
+### Step 2: Add CrashX dependency
+
+Add this in your app module `build.gradle` file.
+
+#### Gradle Kotlin DSL
+
+```kotlin
+dependencies {
+    implementation("com.github.TutorialsAndroid:crashx:v7.0.0")
+}
+```
+
+#### Gradle Groovy DSL
+
+```gradle
+dependencies {
+    implementation 'com.github.TutorialsAndroid:crashx:v7.0.0'
+}
+```
+
+---
+
+### Step 3: Minimum SDK
+
+CrashX v7.0.0 is designed for modern Android projects.
+
+```gradle
+android {
+    defaultConfig {
+        minSdk 23
+    }
+}
+```
+
+---
+
+## Quick start
+
+CrashX installs automatically through its initialization provider.
+
+After adding the dependency, force a test crash:
+
+```java
+throw new RuntimeException("Test CrashX crash");
+```
+
+Your app should open the CrashX error screen instead of showing only the default Android crash dialog.
+
+---
+
+## Basic configuration
+
+It is recommended to configure CrashX inside your `Application` class so the configuration is ready as early as possible.
+
+```java
+import android.app.Application;
+
+import com.developer.crashx.config.CrashConfig;
+
+public class MyApplication extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        CrashConfig.Builder.create()
+                .backgroundMode(CrashConfig.BACKGROUND_MODE_SHOW_CUSTOM)
+                .enabled(true)
+                .showErrorDetails(true)
+                .showRestartButton(true)
+                .showCloseButton(true)
+                .trackActivities(true)
+                .apply();
+    }
+}
+```
+
+Register your `Application` class in `AndroidManifest.xml`:
+
+```xml
+<application
+    android:name=".MyApplication"
+    android:allowBackup="true"
+    android:theme="@style/AppTheme">
+
+</application>
+```
+
+---
+
+## Full professional v7.0.0 configuration
+
+This example uses most of the new v7.0.0 features.
+
+```java
+CrashConfig.Builder.create()
+        .backgroundMode(CrashConfig.BACKGROUND_MODE_SHOW_CUSTOM)
+        .enabled(true)
+
+        // Core crash behavior
+        .showErrorDetails(true)
+        .showRestartButton(true)
+        .showCloseButton(true)
+        .showReportButton(true)
+        .showCopyButtonInDetails(true)
+        .logErrorOnRestart(true)
+        .trackActivities(true)
+        .minTimeBetweenCrashesMs(3000)
+
+        // Crash screen text
+        .errorTitle("Oops! The app crashed")
+        .errorMessage("Something unexpected happened. Please restart the app or send a crash report to help us fix it.")
+        .restartButtonText("Restart app")
+        .closeButtonText("Close app")
+        .detailsButtonText("View technical details")
+        .reportButtonText("Send crash report")
+        .copyButtonText("Copy details")
+
+        // Crash report options
+        .supportEmail("support@example.com")
+        .reportSubject("Crash report from my Android app")
+        .reportChooserTitle("Send crash report using")
+        .additionalReportInfo("Environment: Production")
+
+        // Visibility and report metadata
+        .showCrashId(true)
+        .showAppInfo(true)
+        .includeDeviceInfo(true)
+        .includeActivityLog(true)
+        .includeStackTrace(true)
+        .includeBuildDate(true)
+        .includeCrashId(true)
+        .crashIdPrefix("CRASHX")
+
+        // Limits
+        .maxActivityLogEntries(50)
+        .maxStackTraceSize(128 * 1024)
+
+        // UI colors
+        .backgroundColor(0xFFB91C1C)
+        .cardBackgroundColor(0xFFFFFFFF)
+        .primaryButtonColor(0xFFB91C1C)
+        .secondaryButtonColor(0xFFF3F4F6)
+        .titleTextColor(0xFF111827)
+        .messageTextColor(0xFF4B5563)
+        .buttonTextColor(0xFFFFFFFF)
+        .secondaryButtonTextColor(0xFF111827)
+        .metaTextColor(0xFF6B7280)
+
+        // Optional custom restart target
+        .restartActivity(MainActivity.class)
+
+        .apply();
+```
+
+---
+
+## Configuration
+
+CrashX can be customized using `CrashConfig.Builder`.
+
+### Background behavior
+
+```java
+.backgroundMode(CrashConfig.BACKGROUND_MODE_SHOW_CUSTOM)
+```
+
+Available modes:
+
+| Mode | Description |
+|---|---|
+| `BACKGROUND_MODE_SHOW_CUSTOM` | Shows the CrashX error screen even if the app crashes in background. |
+| `BACKGROUND_MODE_CRASH` | Lets the default/original uncaught exception handler handle background crashes. |
+| `BACKGROUND_MODE_SILENT` | Silently closes the app when it crashes in background. |
+
+---
+
+### Enable or disable CrashX
+
+```java
+.enabled(true)
+```
+
+Use this if you want to enable or disable CrashX depending on build type, flavor, or environment.
+
+Example:
+
+```java
+CrashConfig.Builder.create()
+        .enabled(!BuildConfig.DEBUG)
+        .apply();
+```
+
+---
+
+### Show error details
+
+```java
+.showErrorDetails(true)
+```
+
+When enabled, CrashX shows a button that allows users or testers to view technical crash details.
+
+For production apps, you may prefer:
+
+```java
+.showErrorDetails(false)
+```
+
+---
+
+### Show restart button
+
+```java
+.showRestartButton(true)
+```
+
+When enabled, the default error screen shows a restart button.
+
+If no restart activity is configured, CrashX will try to find your launcher activity automatically.
+
+---
+
+### Show close button
+
+```java
+.showCloseButton(true)
+```
+
+When enabled, the default error screen shows a close button so the user can exit the app cleanly.
+
+---
+
+### Show report button
+
+```java
+.showReportButton(true)
+```
+
+When enabled, CrashX shows a report/share button on the crash screen.
+
+You can combine it with:
+
+```java
+.supportEmail("support@example.com")
+.reportSubject("Crash report")
+.reportChooserTitle("Send crash report using")
+```
+
+---
+
+### Show copy button in details dialog
+
+```java
+.showCopyButtonInDetails(true)
+```
+
+When enabled, the error details dialog includes a copy action so the crash report can be copied to the clipboard.
+
+---
+
+### Log error on restart
+
+```java
+.logErrorOnRestart(true)
+```
+
+When enabled, CrashX logs the previous crash stack trace again when the crash activity opens.
+
+This is useful because the crash screen runs in a new process and Android Studio Logcat may otherwise switch away from the original crashing process.
+
+---
+
+### Track Activity lifecycle
+
+```java
+.trackActivities(true)
+```
+
+When enabled, CrashX records recent Activity lifecycle events before the crash.
+
+Example activity log:
+
+```txt
+2026-05-25 14:10:01: MainActivity created
+2026-05-25 14:10:02: MainActivity resumed
+2026-05-25 14:10:15: ProfileActivity created
+2026-05-25 14:10:16: ProfileActivity resumed
+```
+
+This can help you understand what the user was doing before the crash.
+
+---
+
+### Limit Activity lifecycle log size
+
+```java
+.maxActivityLogEntries(50)
+```
+
+CrashX v7.0.0 uses a bounded Activity log queue, so the log does not grow forever.
+
+---
+
+### Crash loop protection
+
+```java
+.minTimeBetweenCrashesMs(3000)
+```
+
+CrashX prevents infinite crash loops by checking if the app crashed recently.
+
+If another crash occurs within the configured time, CrashX avoids repeatedly opening the custom crash screen.
+
+---
+
+### Stack trace trim size
+
+```java
+.maxStackTraceSize(128 * 1024)
+```
+
+Use this to control the maximum stack trace size passed to the crash screen.
+
+---
+
+### Custom error image
+
+```java
+.errorDrawable(R.drawable.ic_crash)
+```
+
+Use this to replace the default crash icon.
+
+---
+
+### Custom restart activity
+
+```java
+.restartActivity(MainActivity.class)
+```
+
+CrashX opens this activity when the user taps the restart button.
+
+If not provided, CrashX tries to find your restart activity by intent filter, and then falls back to your launcher activity.
+
+---
+
+### Custom error activity
+
+```java
+.errorActivity(MyCrashActivity.class)
+```
+
+Use this when you want a completely custom crash screen instead of the default CrashX UI.
+
+---
+
+### Event listener
+
+```java
+.eventListener(new MyCrashEventListener())
+```
+
+Use this to track crash-screen events.
+
+```java
+public class MyCrashEventListener implements CrashActivity.EventListener {
+
+    @Override
+    public void onLaunchErrorActivity() {
+        // Called when CrashX opens the error screen
+    }
+
+    @Override
+    public void onRestartAppFromErrorActivity() {
+        // Called when the user restarts the app
+    }
+
+    @Override
+    public void onCloseAppFromErrorActivity() {
+        // Called when the user closes the app
+    }
+}
+```
+
+Important: the listener must not be an anonymous or non-static inner class because it needs to be serializable.
+
+---
+
+## UI customization
+
+CrashX v7.0.0 allows direct UI customization from Java configuration.
+
+### Custom text
+
+```java
+.errorTitle("Oops! Something went wrong")
+.errorMessage("The app ran into an unexpected problem. Please restart the app.")
+.restartButtonText("Restart now")
+.closeButtonText("Close")
+.detailsButtonText("Technical details")
+.reportButtonText("Send report")
+.copyButtonText("Copy details")
+```
+
+### Custom colors
+
+```java
+.backgroundColor(0xFF111827)
+.cardBackgroundColor(0xFFFFFFFF)
+.primaryButtonColor(0xFF2563EB)
+.secondaryButtonColor(0xFFF3F4F6)
+.titleTextColor(0xFF111827)
+.messageTextColor(0xFF4B5563)
+.buttonTextColor(0xFFFFFFFF)
+.secondaryButtonTextColor(0xFF111827)
+.metaTextColor(0xFF6B7280)
+```
+
+### Crash ID display
+
+```java
+.showCrashId(true)
+.crashIdPrefix("CRASHX")
+```
+
+CrashX generates a unique crash ID for each crash. This helps developers match user reports with logs.
+
+### App info display
+
+```java
+.showAppInfo(true)
+```
+
+When enabled, the default crash screen can display app and crash metadata such as app version and CrashX version.
+
+---
+
+## Crash report sharing
+
+CrashX v7.0.0 can show a report button and prepare a shareable crash report.
+
+```java
+.showReportButton(true)
+.supportEmail("support@example.com")
+.reportSubject("Crash report from my Android app")
+.reportChooserTitle("Send crash report using")
+.additionalReportInfo("Environment: Production")
+```
+
+If `supportEmail()` is provided, CrashX prepares an email-style report. If no support email is provided, the user can still share the report through available Android share apps.
+
+---
+
+## Crash report data
+
+CrashX can include the following information in the generated report:
+
+| Data | Description |
+|---|---|
+| Crash ID | Unique ID generated for the crash |
+| Package name | App package identifier |
+| App version | Installed app version |
+| CrashX version | CrashX library version |
+| Android version | Android release version |
+| API level | Android SDK level |
+| Device model | Device model name |
+| Brand | Device brand |
+| Manufacturer | Device manufacturer |
+| Crash date | Date and time of crash |
+| Crash thread | Thread where the crash happened |
+| Throwable class | Exception class name |
+| Throwable message | Exception message |
+| Build date | App build date when available |
+| Stack trace | Java/Kotlin exception stack trace |
+| Activity log | Recent Activity lifecycle events |
+| Additional report info | Custom developer-defined report text |
+
+You can control what gets included:
+
+```java
+.includeDeviceInfo(true)
+.includeActivityLog(true)
+.includeStackTrace(true)
+.includeBuildDate(true)
+.includeCrashId(true)
+.additionalReportInfo("Environment: Production")
+```
+
+---
+
+## Recommended configurations
+
+### Debug build
+
+Use this while developing and testing.
+
+```java
+CrashConfig.Builder.create()
+        .enabled(true)
+        .showErrorDetails(true)
+        .showRestartButton(true)
+        .showCloseButton(true)
+        .showReportButton(true)
+        .showCopyButtonInDetails(true)
+        .trackActivities(true)
+        .includeDeviceInfo(true)
+        .includeActivityLog(true)
+        .includeStackTrace(true)
+        .includeBuildDate(true)
+        .includeCrashId(true)
+        .errorTitle("Debug crash")
+        .errorMessage("CrashX caught this crash in debug mode. Open details to inspect the stack trace.")
+        .apply();
+```
+
+### Production build
+
+Use this for public apps where you want a clean user experience.
+
+```java
+CrashConfig.Builder.create()
+        .enabled(true)
+        .showErrorDetails(false)
+        .showRestartButton(true)
+        .showCloseButton(true)
+        .showReportButton(true)
+        .showCopyButtonInDetails(false)
+        .trackActivities(false)
+        .includeDeviceInfo(true)
+        .includeActivityLog(false)
+        .includeStackTrace(true)
+        .includeBuildDate(true)
+        .includeCrashId(true)
+        .supportEmail("support@example.com")
+        .errorTitle("Something went wrong")
+        .errorMessage("The app ran into an unexpected problem. Please restart the app or report the issue.")
+        .apply();
+```
+
+### Minimal configuration
+
+Use this if you only want a clean restart screen.
+
+```java
+CrashConfig.Builder.create()
+        .enabled(true)
+        .showErrorDetails(false)
+        .showRestartButton(true)
+        .showCloseButton(true)
+        .showReportButton(false)
+        .trackActivities(false)
+        .apply();
+```
+
+---
+
+## Custom error activity
+
+If you want complete control, create your own crash activity.
+
+```java
+public class MyCrashActivity extends AppCompatActivity {
+
+    private CrashConfig config;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_crash);
+
+        config = CrashActivity.getConfigFromIntent(getIntent());
+
+        String crashId = CrashActivity.getCrashIdFromIntent(getIntent());
+        String stackTrace = CrashActivity.getStackTraceFromIntent(getIntent());
+        String activityLog = CrashActivity.getActivityLogFromIntent(getIntent());
+        String threadName = CrashActivity.getThreadNameFromIntent(getIntent());
+        String throwableClass = CrashActivity.getThrowableClassFromIntent(getIntent());
+        String throwableMessage = CrashActivity.getThrowableMessageFromIntent(getIntent());
+        String crashDate = CrashActivity.getCrashDateFromIntent(getIntent());
+        String fullDetails = CrashActivity.getAllErrorDetailsFromIntent(this, getIntent());
+
+        findViewById(R.id.btnRestart).setOnClickListener(v -> {
+            CrashActivity.restartApplication(this, config);
+        });
+
+        findViewById(R.id.btnClose).setOnClickListener(v -> {
+            CrashActivity.closeApplication(this, config);
+        });
+    }
+}
+```
+
+Register it in your `AndroidManifest.xml`:
+
+```xml
+<activity
+    android:name=".MyCrashActivity"
+    android:process=":error_activity"
+    android:exported="false" />
+```
+
+Then apply it:
+
+```java
+CrashConfig.Builder.create()
+        .errorActivity(MyCrashActivity.class)
+        .apply();
+```
+
+---
+
+## Intent filter based setup
+
+You can define the error activity using an intent filter.
+
+```xml
+<activity
+    android:name=".MyCrashActivity"
+    android:process=":error_activity"
+    android:exported="false">
+
+    <intent-filter>
+        <action android:name="com.developer.crashx.ERROR" />
+        <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
+
+</activity>
+```
+
+You can define the restart activity like this:
+
+```xml
+<activity
+    android:name=".MainActivity"
+    android:exported="true">
+
+    <intent-filter>
+        <action android:name="com.developer.crashx.RESTART" />
+        <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
+
+</activity>
+```
+
+---
+
+## Useful methods for custom screens
+
+### Get stack trace
+
+```java
+String stackTrace = CrashActivity.getStackTraceFromIntent(getIntent());
+```
+
+### Get activity lifecycle log
+
+```java
+String activityLog = CrashActivity.getActivityLogFromIntent(getIntent());
+```
+
+### Get crash ID
+
+```java
+String crashId = CrashActivity.getCrashIdFromIntent(getIntent());
+```
+
+### Get crash thread name
+
+```java
+String threadName = CrashActivity.getThreadNameFromIntent(getIntent());
+```
+
+### Get throwable class
+
+```java
+String throwableClass = CrashActivity.getThrowableClassFromIntent(getIntent());
+```
+
+### Get throwable message
+
+```java
+String throwableMessage = CrashActivity.getThrowableMessageFromIntent(getIntent());
+```
+
+### Get crash date
+
+```java
+String crashDate = CrashActivity.getCrashDateFromIntent(getIntent());
+```
+
+### Get full error details
+
+```java
+String details = CrashActivity.getAllErrorDetailsFromIntent(this, getIntent());
+```
+
+### Get crash config
+
+```java
+CrashConfig config = CrashActivity.getConfigFromIntent(getIntent());
+```
+
+### Restart application
+
+```java
+CrashActivity.restartApplication(this, config);
+```
+
+### Restart application with custom intent
+
+```java
+Intent intent = new Intent(this, MainActivity.class);
+CrashActivity.restartApplicationWithIntent(this, intent, config);
+```
+
+### Close application
+
+```java
+CrashActivity.closeApplication(this, config);
+```
+
+---
+
+## Testing CrashX
+
+You can force a simple crash:
+
+```java
+throw new RuntimeException("CrashX test crash");
+```
+
+You can test a delayed crash:
+
+```java
+new Handler(Looper.getMainLooper()).postDelayed(() -> {
+    throw new RuntimeException("CrashX delayed crash test");
+}, 3000);
+```
+
+You can test a null pointer crash:
+
+```java
+String value = null;
+int length = value.length();
+```
+
+After the crash, verify:
+
+- Crash screen opens.
+- Restart button launches the app again.
+- Close button exits the app.
+- Error details open when enabled.
+- Copy button works when enabled.
+- Report button opens share/email options when enabled.
+- Crash ID appears when enabled.
+- Device/app metadata appears in the report when enabled.
+- Activity lifecycle log appears when tracking is enabled.
+
+---
+
+## Using with Firebase Crashlytics, ACRA, or other crash tools
+
+CrashX can be used with crash reporting tools, but initialization order matters.
+
+If another library also uses `Thread.setDefaultUncaughtExceptionHandler`, initialize CrashX first, then initialize your crash reporting SDK.
+
+Recommended order:
+
 ```java
 @Override
 public void onCreate() {
     super.onCreate();
 
     CrashConfig.Builder.create()
-        .backgroundMode(CrashConfig.BACKGROUND_MODE_SILENT) //default: CrashConfig.BACKGROUND_MODE_SHOW_CUSTOM
-        .enabled(false) //default: true
-        .showErrorDetails(false) //default: true
-        .showRestartButton(false) //default: true
-        .logErrorOnRestart(false) //default: true
-        .trackActivities(true) //default: false
-        .minTimeBetweenCrashesMs(2000) //default: 3000
-        .errorDrawable(R.drawable.ic_custom_drawable) //default: bug image
-        .restartActivity(YourCustomActivity.class) //default: null (your app's launch activity)
-        .errorActivity(YourCustomErrorActivity.class) //default: null (default error activity)
-        .eventListener(new YourCustomEventListener()) //default: null
-        .apply();
+            .enabled(true)
+            .apply();
+
+    // Initialize Firebase Crashlytics, ACRA, or another crash tool after CrashX if needed.
 }
 ```
 
-## Customization options
+If a custom crash handler replaces CrashX and does not call the previous handler, CrashX may not receive crashes.
 
-### Custom behavior
+---
 
-**Here is a more detailed explanation of each option that can be set using `CrashConfig.Builder`:**
+## R8 / ProGuard
+
+CrashX usually does not require special ProGuard rules.
+
+If you use a custom error activity or custom event listener and your app has aggressive shrinking enabled, you can keep those classes:
+
+```proguard
+-keep class your.package.MyCrashActivity { *; }
+-keep class your.package.MyCrashEventListener { *; }
+```
+
+CrashX also includes consumer rules for safer library usage.
+
+---
+
+## Privacy and production recommendations
+
+Crash reports may contain technical information such as stack traces, app version, device model, package name, Activity names, and exception messages.
+
+For production apps:
+
+- Avoid showing raw stack traces to normal users unless needed.
+- Use `.showErrorDetails(false)` for public builds if technical details are sensitive.
+- Use a support email controlled by your team.
+- Do not collect or share personal user data without permission.
+- Avoid adding sensitive information to `additionalReportInfo()`.
+- Clearly explain crash reporting behavior in your app privacy policy if reports are sent externally.
+
+Recommended production setup:
 
 ```java
-launchWhenInBackground(int);
+CrashConfig.Builder.create()
+        .enabled(true)
+        .showErrorDetails(false)
+        .showReportButton(true)
+        .supportEmail("support@example.com")
+        .includeDeviceInfo(true)
+        .includeActivityLog(false)
+        .includeStackTrace(true)
+        .includeCrashId(true)
+        .apply();
 ```
-> This method defines if the error activity should be launched when the app crashes while on background.
-> There are three modes:
-> - `CrashConfig.BACKGROUND_MODE_SHOW_CUSTOM`: launch the error activity even if the app is in background.
-> - `CrashConfig.BACKGROUND_MODE_CRASH`: launch the default system error when the app is in background.
-> - `CrashConfig.BACKGROUND_MODE_SILENT`: crash silently when the app is in background.
->
-> The default is `CrashConfig.BACKGROUND_MODE_SHOW_CUSTOM`.
+
+---
+
+## Limitations
+
+CrashX is designed for uncaught Java/Kotlin exceptions.
+
+CrashX does not handle every possible failure. It does not catch:
+
+- ANRs
+- Native crashes
+- Low-level system kills
+- Force stops by the operating system
+- Crashes before the library is initialized
+- Some multiprocess edge cases
+- Errors inside the crash activity itself
+
+CrashX improves the crash recovery experience, but it is not a replacement for proper crash monitoring, logging, testing, and bug fixing.
+
+---
+
+## Migration guide for v7.0.0
+
+### 1. Update dependency
+
+```gradle
+implementation 'com.github.TutorialsAndroid:crashx:v7.0.0'
+```
+
+### 2. Add attribution files
+
+Make sure your repository includes:
+
+```txt
+LICENSE
+NOTICE
+README.md
+```
+
+### 3. Review package imports
 
 ```java
-enabled(boolean);
+import com.developer.crashx.CrashActivity;
+import com.developer.crashx.config.CrashConfig;
 ```
-> Defines if CrashActivity crash interception mechanism is enabled.
-> Set it to `true` if you want CrashActivity to intercept crashes,
-> `false` if you want them to be treated as if the library was not installed.
-> This can be used to enable or disable the library depending on flavors or buildTypes.
-> The default is `true`.
+
+### 4. Replace upgraded source files
+
+For the v7.0.0 upgrade, replace these files in the library module:
+
+```txt
+library/src/main/java/com/developer/crashx/CrashActivity.java
+library/src/main/java/com/developer/crashx/config/CrashConfig.java
+library/src/main/java/com/developer/crashx/activity/DefaultErrorActivity.java
+library/src/main/java/com/developer/crashx/provider/CrashInitProvider.java
+library/src/main/AndroidManifest.xml
+library/src/main/res/layout/crash_default_error_activity.xml
+library/src/main/res/values/strings.xml
+library/src/main/res/values/dimens.xml
+library/src/main/res/drawable/crash_ic_bug_report.xml
+library/consumer-rules.pro
+```
+
+### 5. Update configuration
+
+Old basic setup:
 
 ```java
-showErrorDetails(boolean);
+CrashConfig.Builder.create()
+        .showErrorDetails(true)
+        .trackActivities(true)
+        .apply();
 ```
-> This method defines if the error activity must show a button with error details.
-> If you set it to `false`, the button on the default error activity will disappear, thus disabling the user from seeing the stack trace.
-> The default is `true`.
+
+New v7 recommended setup:
 
 ```java
-trackActivities(boolean);
+CrashConfig.Builder.create()
+        .showErrorDetails(true)
+        .showRestartButton(true)
+        .showCloseButton(true)
+        .trackActivities(true)
+        .errorTitle("Oops! The app crashed")
+        .errorMessage("Something unexpected happened. Please restart the app.")
+        .showReportButton(true)
+        .supportEmail("support@example.com")
+        .includeDeviceInfo(true)
+        .includeActivityLog(true)
+        .includeStackTrace(true)
+        .includeCrashId(true)
+        .apply();
 ```
-> This method defines if the library must track the activities the user visits and their lifecycle calls.
-> This is displayed on the default error activity as part of the error details.
-> The default is `false`.
+
+### 6. Test crash screen
 
 ```java
-showRestartButton(boolean);
-```
-> This method defines if the error activity must show a "Restart app" button or a "Close app" button.
-> If you set it to `false`, the button on the default error activity will close the app instead of restarting.
-> If you set it to `true` and your app has no launch activity, it will still display a "Close app" button!
-> The default is `true`.
-
-```java
-logErrorOnRestart(boolean);
-```
-> This controls if the stack trace must be relogged when the custom error activity is launched.
-> This functionality exists because the Android Studio default Logcat view only shows the output for the
-> current process. This makes it easier to see the stack trace of the crash. You can disable it if you
-> don't want an extra log.
-> The default is `true`.
-
-```java
-minTimeBetweenCrashesMs(boolean);
-```
-> Defines the time that must pass between app crashes to determine that we are not in a crash loop.
-> If a crash has occurred less that this time ago, the error activity will not be launched and the system
-> crash screen will be invoked.
-> The default is `3000`.
-
-```java
-errorDrawable(Integer);
-```
-> This method allows changing the default upside-down bug image with an image of your choice.
-> You can pass a resource id for a drawable or a mipmap.
-> The default is `null` (the bug image is used).
-
-```java
-restartActivity(Class<? extends Activity>);
-```
-> This method sets the activity that must be launched by the error activity when the user presses the button to restart the app.
-> If you don't set it (or set it to null), the library will use the first activity on your manifest that has an intent-filter with action
-> `com.developer.crashx.RESTART`, and if there is none, the default launchable activity on your app.
-> If no launchable activity can be found and you didn't specify any, the "restart app" button will become a "close app" button,
-> even if `showRestartButton` is set to `true`.
->
-> As noted, you can also use the following intent-filter to specify the restart activity:
-> ```xml
-> <intent-filter>
->     <!-- ... -->
->     <action android:name="com.developer.crashx.RESTART" />
-> </intent-filter>
-> ```
-
-```java
-errorActivity(Class<? extends Activity>);
-```
-> This method allows you to set a custom error activity to be launched, instead of the default one.
-> Use it if you need further customization that is not just strings, colors or themes (see below).
-> If you don't set it (or set it to null), the library will use the first activity on your manifest that has an intent-filter with action
-> `com.developer.crashx.ERROR`, and if there is none, a default error activity from the library.
-> If you use this, the activity **must** be declared in your `AndroidManifest.xml`, with `process` set to `:error_activity`.
->
-> Example:
-> ```xml
-> <activity
->     android:name="com.developer.crashx.sample.CustomErrorActivity"
->     android:label="@string/error_title"
->     android:process=":error_activity" />
-> ```
->
-> As noted, you can also use the following intent-filter to specify the error activity:
-> ```xml
-> <intent-filter>
->     <!-- ... -->
->     <action android:name="com.developer.crashx.ERROR" />
-> </intent-filter>
-> ```
-
-```java
-eventListener(EventListener);
-```
-> This method allows you to specify an event listener in order to get notified when the library shows the error activity, restarts or closes the app.
-> The EventListener you provide can not be an anonymous or non-static inner class, because it needs to be serialized by the library. The library will throw an exception if you try to set an invalid class.
-> If you set it to `null`, no event listener will be invoked.
-> The default is `null`.
-
-### Customization of the default activity
-
-You can override several resources to customize the default activity:
-
-**Theme:**
-
-The activity uses your application theme by default. It must be a child of `Theme.AppCompat` or a default one will be used.
-If you want to specify a specific theme only for the error activity, you can do so by redeclaring it on your manifest like this:
-
-```xml
-<activity
-    android:name="com.developer.crashx.activity.DefaultErrorActivity"
-    android:theme="@style/YourThemeHere"
-    android:process=":error_activity" />
+throw new RuntimeException("CrashX v7.0.0 migration test");
 ```
 
-**Image:**
+---
 
-By default, an image of a bug is displayed. You can change it to any image by using the provided `errorDrawable(int)` method.
-You can also do it the old way and create a `crash_error_image` drawable on all density buckets (mdpi, hdpi, xhdpi, xxhdpi and xxxhdpi).
+## Build and release checklist
 
-**Strings:**
+Before publishing `v7.0.0`, verify:
 
-You can provide new strings and translations for the default error activity strings by overriding the following strings:
-```xml
-<string name="crash_error_activity_error_occurred_explanation">An unexpected error occurred.\nSorry for the inconvenience.</string>
-<string name="crash_error_activity_restart_app">Restart app</string>
-<string name="crash_error_activity_close_app">Close app</string>
-<string name="crash_error_activity_error_details">Error details</string>
-<string name="crash_error_activity_error_details_title">Error details</string>
-<string name="crash_error_activity_error_details_close">Close</string>
-<string name="crash_error_activity_error_details_copy">Copy to clipboard</string>
-<string name="crash_error_activity_error_details_copied">Copied to clipboard</string>
-<string name="crash_error_activity_error_details_clipboard_label">Error information</string>
+- `README.md` uses `v7.0.0` everywhere.
+- GitHub release tag is exactly `v7.0.0`.
+- JitPack dependency points to `com.github.TutorialsAndroid:crashx:v7.0.0`.
+- `CrashActivity.VERSION` is `7.0.0`.
+- `NOTICE` file exists.
+- Apache 2.0 license exists.
+- Original CustomActivityOnCrash attribution is visible.
+- Sample app compiles.
+- Library module builds successfully.
+- Restart button works.
+- Close button works.
+- Details dialog works.
+- Copy button works.
+- Report/share button works.
+- Crash ID appears when enabled.
+- Production config hides technical details when required.
+
+Build command:
+
+```bash
+./gradlew clean :library:assembleRelease :sample:assembleDebug
 ```
 
-*There is a `sample` project module with examples of these overrides. If in doubt, check the code in that module.*
+Windows:
 
-### Completely custom error activity
-
-If you choose to create your own completely custom error activity, you can use these methods:
-
-```java
-CrashActivity.getStackTraceFromIntent(getIntent());
+```bat
+gradlew.bat clean :library:assembleRelease :sample:assembleDebug
 ```
-> Returns the stack trace that caused the error as a string.
 
-```java
-CrashActivity.getAllErrorDetailsFromIntent(getIntent());
-```
-> Returns several error details including the stack trace that caused the error, as a string. This is used in the default error activity error details dialog.
+---
 
-```java
-CrashActivity.getConfigFromIntent(getIntent());
-```
-> Returns the config of the library when the crash happened. Used to call some methods.
+## Relationship with CustomActivityOnCrash
 
-```java
-CrashActivity.restartApplication(activity, config);
-```
-> Kills the current process and restarts the app again with a `startActivity()` to the passed intent.
-> You **MUST** call this to restart the app, or you will end up having several `Application` class instances and experience multiprocess issues.
+CrashX started from CustomActivityOnCrash and now continues as a credited derivative project.
 
-```java
-CrashActivity.restartApplicationWithIntent(activity, intent, config);
-```
-> The same as `CrashActivity.restartApplication`, but allows you to specify a custom intent.
+The original project solved the core idea of showing a custom crash activity instead of the default Android crash dialog.
 
-```java
-CrashActivity.closeApplication(activity, eventListener);
-```
-> Closes the app and kills the current process.
-> You **MUST** call this to close the app, or you will end up having several Application class instances and experience multiprocess issues.
+CrashX builds on that idea with:
 
-**The `sample` project module includes an example of a custom error activity. If in doubt, check the code in that module.**
+- Modern Android maintenance
+- Updated documentation
+- UI customization
+- Crash report sharing
+- Crash IDs
+- Safer configuration
+- Activity log improvements
+- Crash metadata improvements
+- Updated default UI
+- Clear attribution and licensing
 
-## Using Proguard?
+Original project: https://github.com/Ereza/CustomActivityOnCrash  
+Original author: Eduard Ereza Martínez  
+License: Apache License 2.0
 
-No need to add special rules, the library should work even with obfuscation.
+CrashX respects the original work and keeps credit visible.
 
-## Inner workings
+---
 
-This library relies on the `Thread.setDefaultUncaughtExceptionHandler` method.
-When an exception is caught by the library's `UncaughtExceptionHandler` it does the following:
+## Project status
 
-1. Captures the stack trace that caused the crash
-2. Launches a new intent to the error activity in a new process passing the crash info as an extra.
-3. Kills the current process.
+CrashX is actively maintained by TutorialsAndroid.
 
-The inner workings are based on [ACRA](https://github.com/ACRA/acra)'s dialog reporting mode with some minor tweaks. Look at the code if you need more detail about how it works.
+Current goals:
 
-## Incompatibilities
+- Keep the library working with modern Android versions.
+- Improve crash screen customization.
+- Improve documentation and examples.
+- Keep attribution and licensing transparent.
+- Accept useful issues and pull requests from the community.
 
-* CrashActivity will not work in these cases:
-    * With any custom `UncaughtExceptionHandler` set after initializing the library, that does not call back to the original handler.
-    * With ACRA enabled and reporting mode set to `TOAST` or `DIALOG`.
-* If your app initialization or error activity crash, there is a possibility of entering an infinite restart loop (this is checked by the library for the most common cases, but could happen in rarer cases).
-* The library has not been tested with multidex enabled. It uses Class.forName() to load classes, so maybe that could cause some problem in API<21. If you test it with such configuration, please provide feedback!
-* The library has not been tested with multiprocess apps. If you test it with such configuration, please provide feedback too!
+---
 
-## Disclaimers
+## Contributing
 
-* This will not avoid ANRs from happening.
-* This will not catch native errors.
-* There is no guarantee that this will work on every device.
-* This library will not make you toast for breakfast :)
+Contributions are welcome.
+
+You can contribute by:
+
+- Reporting bugs
+- Improving documentation
+- Suggesting features
+- Opening pull requests
+- Testing CrashX on different Android versions
+- Improving UI and accessibility
+- Adding sample projects
+
+Before opening a pull request:
+
+1. Fork the repository.
+2. Create a new feature branch.
+3. Make your changes.
+4. Test the sample app.
+5. Open a pull request with a clear explanation.
+
+---
+
+## Responsible open-source maintenance
+
+CrashX is maintained with respect for the open-source community.
+
+This project acknowledges that it is derived from CustomActivityOnCrash and gives clear credit to the original author.
+
+If you notice missing attribution, licensing issues, or documentation problems, please open an issue so it can be corrected.
+
+---
 
 ## License
 
-* [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
+CrashX is licensed under the Apache License, Version 2.0.
 
-```
+```txt
 Copyright 2019 CrashX
+Copyright original portions: Eduard Ereza Martínez and CustomActivityOnCrash contributors
+Copyright modified portions: TutorialsAndroid and CrashX contributors
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0.
+You may obtain a copy of the License at:
 
- http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
+```
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+See the [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE) files for details.
+
+---
+
+## Credits
+
+Special thanks to:
+
+- **Eduard Ereza Martínez** for the original CustomActivityOnCrash project.
+- CustomActivityOnCrash contributors.
+- TutorialsAndroid contributors and users.
+- The Android open-source community.
+
+---
+
+<p align="center">
+  Made with ❤️ for Android developers.
+</p>
+
+<p align="center">
+  <a href="https://github.com/TutorialsAndroid/crashx">GitHub Repository</a>
+  ·
+  <a href="https://jitpack.io/#TutorialsAndroid/crashx">JitPack</a>
+  ·
+  <a href="https://github.com/Ereza/CustomActivityOnCrash">Original Project</a>
+</p>

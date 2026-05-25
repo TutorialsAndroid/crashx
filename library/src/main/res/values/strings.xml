@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="customactivityoncrash_error_activity_error_occurred_explanation">An unexpected error occurred.\nSorry for the inconvenience.</string>
+    <!-- Legacy-compatible string names kept intentionally for existing users. -->
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation">An unexpected error occurred. Sorry for the inconvenience.</string>
     <string name="customactivityoncrash_error_activity_restart_app">Restart app</string>
     <string name="customactivityoncrash_error_activity_close_app">Close app</string>
     <string name="customactivityoncrash_error_activity_error_details">Error details</string>
     <string name="customactivityoncrash_error_activity_error_details_title">Error details</string>
     <string name="customactivityoncrash_error_activity_error_details_close">Close</string>
-    <string name="customactivityoncrash_error_activity_error_details_copy">Copy to clipboard</string>
+    <string name="customactivityoncrash_error_activity_error_details_copy">Copy</string>
     <string name="customactivityoncrash_error_activity_error_details_copied">Copied to clipboard</string>
-    <string name="customactivityoncrash_error_activity_error_details_clipboard_label">Error information</string>
+    <string name="customactivityoncrash_error_activity_error_details_clipboard_label">CrashX error information</string>
+
+    <!-- CrashX v7 strings. -->
+    <string name="crashx_send_crash_report">Send crash report</string>
+    <string name="crashx_crash_id_format">Crash ID: %1$s</string>
+    <string name="crashx_version_format">CrashX v%1$s</string>
+    <string name="crashx_default_report_subject">Crash report - %1$s - %2$s</string>
+    <string name="crashx_no_share_app_found">No app found to share the report. Crash details were copied instead.</string>
 </resources>

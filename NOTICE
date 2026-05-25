@@ -1,4 +1,18 @@
-Custom Activity on Crash library
-Copyright (c) 2014-2017 Eduard Ereza, http://www.eduardereza.com/
+CrashX
+Copyright 2019-2026 TutorialsAndroid
 
-This product is licensed under the terms of the Apache Software License 2.0. See the LICENSE file for the full license text.
+This project is a maintained and modified derivative of CustomActivityOnCrash:
+https://github.com/Ereza/CustomActivityOnCrash
+
+Original project:
+CustomActivityOnCrash
+Copyright 2014-2017 Eduard Ereza Martínez
+Licensed under the Apache License, Version 2.0.
+
+CrashX changes include package renaming, maintenance updates, documentation updates,
+new configuration options, crash report sharing, modernized default crash UI,
+additional crash metadata, and Android compatibility improvements.
+
+The original project documentation notes that the default bug image was licensed
+under CC-BY by Riff. If this image is kept in CrashX, the attribution should be
+preserved in the README/NOTICE or the image should be replaced with an original asset.

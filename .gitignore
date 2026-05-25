@@ -7,3 +7,7 @@ local.properties
 .idea/**
 .gradle
 *.hprof
+create-central-bundle.ps1
+library/build/
+sample/build/
+HowToPublish.txt

@@ -1,68 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/crash_error_activity_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D50000">
+    android:background="#D50000"
+    android:fillViewport="true">
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="0dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
+        android:minHeight="560dp"
+        android:padding="20dp">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/crash_error_activity_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/customactivityoncrash_activity_horizontal_margin"
-            android:paddingTop="@dimen/customactivityoncrash_activity_vertical_margin"
-            android:paddingRight="@dimen/customactivityoncrash_activity_horizontal_margin"
-            android:paddingBottom="@dimen/customactivityoncrash_activity_vertical_margin">
+            android:layout_gravity="center"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
 
-            <ImageView
-                android:id="@+id/crash_error_activity_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:contentDescription="@null"
-                android:scaleType="fitXY"
-                android:src="@drawable/crash_ic_bug_report" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/customactivityoncrash_activity_vertical_margin"
                 android:gravity="center"
-                android:text="@string/customactivityoncrash_error_activity_error_occurred_explanation"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:paddingLeft="28dp"
+                android:paddingTop="34dp"
+                android:paddingRight="28dp"
+                android:paddingBottom="34dp">
 
-            <Button
-                android:id="@+id/crash_error_activity_restart_button"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/customactivityoncrash_activity_vertical_margin"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:background="#D50000"
-                android:text="@string/customactivityoncrash_error_activity_close_app"
-                android:drawableBottom="@drawable/crash_ic_close" />
+                <ImageView
+                    android:id="@+id/crash_error_activity_image"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:contentDescription="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/crash_ic_bug_report" />
 
-            <Button
-                android:id="@+id/crash_error_activity_more_info_button"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="@string/customactivityoncrash_error_activity_error_details"
-                android:layout_marginTop="@dimen/customactivityoncrash_activity_vertical_margin"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:background="#D50000"
-                android:drawableBottom="@drawable/crash_ic_error"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>
+                <TextView
+                    android:id="@+id/crash_error_activity_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="2dp"
+                    android:text="Something went wrong"
+                    android:textColor="#111827"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/crash_error_activity_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:text="The app ran into an unexpected problem. You can restart the app or send a crash report."
+                    android:textColor="#4B5563"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/crash_error_activity_crash_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:text="Crash ID: CRASHX-000000000000"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/crash_error_activity_restart_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="26dp"
+                    android:background="#D50000"
+                    android:text="@string/customactivityoncrash_error_activity_restart_app"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/crash_error_activity_report_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#D50000"
+                    android:text="@string/crashx_send_crash_report"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/crash_error_activity_more_info_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#F3F4F6"
+                    android:text="@string/customactivityoncrash_error_activity_error_details"
+                    android:textAllCaps="false"
+                    android:textColor="#111827"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/crash_error_activity_close_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#F3F4F6"
+                    android:text="@string/customactivityoncrash_error_activity_close_app"
+                    android:textAllCaps="false"
+                    android:textColor="#111827"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/crash_error_activity_app_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center"
+                    android:text="CrashX v7.0.0"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</ScrollView>

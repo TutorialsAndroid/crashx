@@ -1,27 +1,58 @@
 apply plugin: 'com.android.library'
-
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 group='com.github.TutorialsAndroid'
 
+ext {
+    PUBLISH_GROUP_ID = 'io.github.tutorialsandroid'
+    PUBLISH_VERSION = '7.0.0'
+    PUBLISH_ARTIFACT_ID = 'crashx'
+    PUBLISH_DESCRIPTION = 'This library allows launching a crash activity when the app crashes, instead of showing the hated "Unfortunately, X has stopped" dialog.'
+    PUBLISH_URL = 'https://github.com/TutorialsAndroid/crashx'
+    PUBLISH_LICENSE_NAME = 'Apache License'
+    PUBLISH_LICENSE_URL =
+            'https://github.com/TutorialsAndroid/crashx/blob/master/LICENSE'
+    PUBLISH_DEVELOPER_ID = 'tutorialsandroid'
+    PUBLISH_DEVELOPER_NAME = 'Akshay Masram'
+    PUBLISH_DEVELOPER_EMAIL = 'akshaysunilmasram@yahoo.com'
+    PUBLISH_SCM_CONNECTION =
+            'scm:git:github.com/tutorialsandroid/crashx.git'
+    PUBLISH_SCM_DEVELOPER_CONNECTION =
+            'scm:git:ssh://github.com/tutorialsandroid/crashx.git'
+    PUBLISH_SCM_URL =
+            'https://github.com/tutorialsandroid/crashx/tree/master'
+}
+
 android {
-    compileSdkVersion 29
+    namespace 'com.developer.crashx'
+    compileSdk 37
     resourcePrefix 'crash_'
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 8
-        versionName "5.0.19"
+        minSdk 23
+        targetSdk 37
+        versionCode 9
+        versionName "7.0.0"
     }
-	buildTypes {
+    buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+
     compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    lint {
+        abortOnError false
     }
 }
 
@@ -29,10 +60,10 @@ dependencies {
 	implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //ANDROIDX JETPACK LIBRARIES
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.google.android.material:material:1.2.0'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 }

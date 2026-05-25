@@ -1,28 +1,33 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    namespace 'com.developer.crashx.crash'
+    compileSdk 37
 
     defaultConfig {
         applicationId "com.developer.crashx.crash"
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 8
-        versionName "5.0.19"
+        minSdkVersion 23
+        targetSdkVersion 37
+        versionCode 9
+        versionName "7.0.0"
     }
     buildTypes {
-        debug {
-            minifyEnabled false
-            proguardFiles 'proguard-rules.pro'
-        }
         release {
             minifyEnabled false
-            proguardFiles 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            debuggable true
         }
     }
+    buildFeatures {
+        buildConfig true
+    }
     compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
@@ -30,11 +35,11 @@ dependencies {
 	implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //ANDROIDX JETPACK LIBRARIES
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.google.android.material:material:1.2.0'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 	
 	//CrashX library

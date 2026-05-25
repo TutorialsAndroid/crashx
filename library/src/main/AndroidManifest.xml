@@ -3,14 +3,20 @@
     package="com.developer.crashx">
 
     <application>
-        <activity
-            android:name="com.developer.crashx.activity.DefaultErrorActivity"
-            android:process=":error_activity" />
         <provider
             android:name="com.developer.crashx.provider.CrashInitProvider"
-            android:authorities="${applicationId}.crashinitprovider"
+            android:authorities="${applicationId}.crashx-init-provider"
             android:exported="false"
             android:initOrder="101" />
+
+        <activity
+            android:name="com.developer.crashx.activity.DefaultErrorActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnTaskLaunch="true"
+            android:launchMode="singleTask"
+            android:process=":crashx_error"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>
