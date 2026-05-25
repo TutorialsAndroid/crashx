@@ -188,7 +188,7 @@ CrashX v7.0.1 can include:
 ## Sample screen
 
 <p align="center">
-  <img src="https://github.com/TutorialsAndroid/crashx/blob/master/images/device-2019-03-19-154405.png" width="320" alt="CrashX Sample Screen" />
+  <img src="images/Screenshot_1779711035.png" width="320" alt="CrashX Sample Screen" />
 </p>
 
 ---
