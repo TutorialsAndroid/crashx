@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://github.com/TutorialsAndroid/crashx/blob/master/sample/src/main/res/mipmap-xxhdpi/ic_launcher.png" width="112" alt="CrashX Logo" />
-</p>
+<img src="https://raw.githubusercontent.com/TutorialsAndroid/crashx/refs/heads/master/images/banner.png" align="center" />
 
 <h1 align="center">CrashX</h1>
 
