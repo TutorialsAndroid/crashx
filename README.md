@@ -26,7 +26,7 @@
 <p align="center">
   <a href="#installation">Installation</a> •
   <a href="#quick-start">Quick Start</a> •
-  <a href="#whats-new-in-v700">What's New</a> •
+  <a href="#whats-new-in-v700-above">What's New</a> •
   <a href="#configuration">Configuration</a> •
   <a href="#custom-error-activity">Custom Error Activity</a> •
   <a href="#important-attribution">Attribution</a> •
@@ -92,7 +92,7 @@ The default Android crash dialog is generic and does not help users recover. Cra
 
 ---
 
-## What's new in v7.X.X
+## What's new in v7.0.0 Above
 
 CrashX v7.0.1 is a major transparency, modernization, and feature upgrade.
 
